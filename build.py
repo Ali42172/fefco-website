@@ -87,7 +87,7 @@ def org_schema():
          "telephone": COMPANY["phone_main"], "email": COMPANY["email"],
          "address": {"@type": "PostalAddress", "streetAddress": "Deira Tower, 2307 Baniyas Road, Al Rigga", "addressLocality": "Deira, Dubai", "addressRegion": "Dubai", "addressCountry": "AE"},
          "geo": {"@type": "GeoCoordinates", "latitude": COMPANY["geo"][0], "longitude": COMPANY["geo"][1]}, "hasMap": COMPANY["maps"],
-         "founder": {"@type": "Person", "name": "Mustafa Asgar Ali", "alternateName": ["Mustafa Fefco", "Mustafa Ali"], "jobTitle": "Founder", "memberOf": [{"@type": "Organization", "name": "Building Materials Group (BMG)", "description": "Business group under the patronage of Dubai Chamber; Board Member"}, {"@type": "Organization", "name": "Dubai Chamber of Commerce"}]},
+         "founder": {"@type": "Person", "name": "Mustafa Asgar Ali", "alternateName": ["Mustafa Fefco", "Mustafa Ali"], "jobTitle": "Founder", "memberOf": {"@type": "Organization", "name": "Building Materials Group (BMG)", "description": "Business group established by Dubai Chamber of Commerce; Mustafa Asgar Ali is a Board Member", "parentOrganization": {"@type": "Organization", "name": "Dubai Chamber of Commerce", "url": "https://www.dubaichamber.com/"}}},
          "areaServed": [{"@type": "Country", "name": "United Arab Emirates"}, "Dubai", "Sharjah", "Abu Dhabi", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"],
          "sameAs": [s[1] for s in SOCIAL if s[2] != "wa"],
          "subOrganization": {"@type": "Organization", "name": "FEFCO AI Solutions", "url": AI_SITE, "sameAs": [s[1] for s in SOCIAL_AI]},
@@ -262,8 +262,8 @@ HOME = {
         "proj_k": "Our work", "proj_h": "Real installations across the UAE", "proj_p": "Villas, factories, hotels and farms: a selection from FEFCO's project archive.",
         "proj_btn": "See more projects",
         "lead_k": "Founder", "lead_h": "Led by a founder who shows up on site",
-        "lead_p": "Mustafa Asgar Ali founded FEFCO and still runs it hands-on. He is a Board Member of the Building Materials Group (BMG) under the patronage of Dubai Chamber, speaks at industry events across the UAE, and is regularly on client sites himself.",
-        "lead_pts": ["Board Member of the Building Materials Group (BMG), under the patronage of Dubai Chamber", "Regular speaker at building-materials and clean-energy industry events in the UAE", "Leads partnerships with Lamborghini Calorclima and Inspire Clean Energy (EIRA)", "Oversees FEFCO AI Solutions, the group's AI and digital division"],
+        "lead_p": "Mustafa Asgar Ali founded FEFCO and still runs it hands-on. He is a Board Member of the Building Materials Group (BMG), established by Dubai Chamber of Commerce, speaks at industry events across the UAE, and is regularly on client sites himself.",
+        "lead_pts": ["Board Member of the Building Materials Group (BMG), established by Dubai Chamber of Commerce", "Regular speaker at building-materials and clean-energy industry events in the UAE", "Leads partnerships with Lamborghini Calorclima and Inspire Clean Energy (EIRA)", "Oversees FEFCO AI Solutions, the group's AI and digital division"],
         "lead_tag": "Founder, FEFCO Solutions · Board Member, BMG", "lead_tag2": "Founder, FEFCO Solutions",
         "seg_k": "Who we work with", "seg_h": "From one villa to a whole portfolio",
         "segs": [("Homeowners", "Solar, hot water, EV charging and plumbing for villas and townhouses."), ("Businesses", "Offices, shops, restaurants and hotels that want lower running costs."), ("Industry", "Factories, warehouses and farms with big roofs and big loads."), ("Facility managers", "One accountable contractor for many systems and many sites.")],
@@ -290,8 +290,8 @@ HOME = {
         "proj_k": "أعمالنا", "proj_h": "تركيبات حقيقية في جميع أنحاء الإمارات", "proj_p": "فلل ومصانع وفنادق ومزارع: مختارات من أرشيف مشاريع فيفكو.",
         "proj_btn": "شاهد المزيد من المشاريع",
         "lead_k": "المؤسس", "lead_h": "بقيادة مؤسس حاضر في الموقع",
-        "lead_p": "أسس مصطفى أصغر علي فيفكو وما زال يديرها بأسلوب عملي مباشر. وهو عضو مجلس إدارة مجموعة مواد البناء (BMG) تحت رعاية غرفة دبي، ويتحدث في فعاليات القطاع في أنحاء الإمارات، ويحضر بنفسه إلى مواقع العملاء.",
-        "lead_pts": ["عضو مجلس إدارة مجموعة مواد البناء (BMG) تحت رعاية غرفة دبي", "متحدث دائم في فعاليات قطاعي مواد البناء والطاقة النظيفة في الإمارات", "يقود الشراكات مع لامبورغيني كالوركليما وإنسباير كلين إنرجي (EIRA)", "يشرف على فيفكو للذكاء الاصطناعي، القسم الرقمي للمجموعة"],
+        "lead_p": "أسس مصطفى أصغر علي فيفكو وما زال يديرها بأسلوب عملي مباشر. وهو عضو مجلس إدارة مجموعة مواد البناء (BMG) التي أسستها غرفة تجارة دبي، ويتحدث في فعاليات القطاع في أنحاء الإمارات، ويحضر بنفسه إلى مواقع العملاء.",
+        "lead_pts": ["عضو مجلس إدارة مجموعة مواد البناء (BMG) التي أسستها غرفة تجارة دبي", "متحدث دائم في فعاليات قطاعي مواد البناء والطاقة النظيفة في الإمارات", "يقود الشراكات مع لامبورغيني كالوركليما وإنسباير كلين إنرجي (EIRA)", "يشرف على فيفكو للذكاء الاصطناعي، القسم الرقمي للمجموعة"],
         "lead_tag": "المؤسس، فيفكو سوليوشنز · عضو مجلس إدارة BMG", "lead_tag2": "المؤسس، فيفكو سوليوشنز",
         "seg_k": "مع من نعمل", "seg_h": "من فيلا واحدة إلى محفظة عقارية كاملة",
         "segs": [("أصحاب المنازل", "الطاقة الشمسية والمياه الساخنة وشحن السيارات والسباكة للفلل والتاون هاوس."), ("الشركات", "المكاتب والمحلات والمطاعم والفنادق الراغبة في خفض تكاليف التشغيل."), ("الصناعة", "المصانع والمستودعات والمزارع ذات الأسطح الكبيرة والأحمال العالية."), ("مديرو المرافق", "مقاول واحد مسؤول عن أنظمة ومواقع متعددة.")],
@@ -353,7 +353,7 @@ FOUNDER_PHOTOS = [
  ("2026/11/image-6.png", ("On a project site", "في موقع مشروع")),
  ("2026/11/image-7.png", ("Site visit", "زيارة موقع")),
 ]
-AFFIL = [("BMG", "Building Materials Group", "مجموعة مواد البناء", "Board Member", "عضو مجلس الإدارة"), ("Dubai Chamber", "Dubai Chamber of Commerce", "غرفة تجارة دبي", "Member", "عضو")]
+AFFIL = [("BMG", "Building Materials Group", "مجموعة مواد البناء", "Board Member", "عضو مجلس الإدارة"), ("Dubai Chamber", "Dubai Chamber of Commerce", "غرفة تجارة دبي", "Founding body of BMG", "الجهة المؤسسة لـ BMG")]
 def affil_html(lang):
     k = 0 if lang == "en" else 1
     return '<div class="affil">' + "".join(f'<div class="aff"><b>{a[0]}</b><span>{a[1+k]}<small>{a[3+k]}</small></span></div>' for a in AFFIL) + '</div>'
