@@ -3,7 +3,22 @@
 The new site is plain static HTML in `dist/` (56 pages, English + Arabic). It runs on any static host.
 Recommended: **Cloudflare Pages** or **Vercel** (free tier, global CDN, free SSL). Netlify also works (`_redirects` is included).
 
-## 1. Copy the images off WordPress (before anything else)
+## 0. Chosen setup: GitHub Pages
+The repo includes `.github/workflows/deploy.yml`. On every push it builds the site, copies all photos listed in `media.txt` from the WordPress media library into `assets/media/`, shrinks them, and publishes to GitHub Pages. Preview URL: `https://<github-user>.github.io/<repo>/`.
+
+DNS records for the boss (at the DNS panel for fefco.ae — do NOT change nameservers, do NOT touch MX/TXT email records):
+
+| Type | Name | Value |
+|---|---|---|
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+| CNAME | www | <github-user>.github.io |
+
+Remove only the old A record(s) for @ and the old www record. Then add `static/CNAME` containing `fefco.ae`, push, and tick 'Enforce HTTPS' in the repo's Pages settings.
+
+## 1. Copy the images off WordPress (manual alternative)
 Pages currently load photos from `https://fefco.ae/wp-content/uploads/...`. Those URLs disappear when DNS moves.
 1. Download the WordPress media library (WP admin → Tools → Export → Media, or FTP `wp-content/uploads/`).
 2. Put the folders (`2023/`, `2024/`, `2025/`, `2026/`) into `static/assets/media/`.
