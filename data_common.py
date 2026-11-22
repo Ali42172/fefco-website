@@ -1,0 +1,194 @@
+# -*- coding: utf-8 -*-
+"""Shared company facts, navigation and UI strings (EN + AR) for the FEFCO website."""
+
+DOMAIN = "https://fefco.ae"
+
+# While images still live on the WordPress media library they are loaded from there.
+# Before switching DNS, set MEDIA_BASE = "/assets/media/" after copying the files (see MIGRATION.md).
+MEDIA_BASE = "https://fefco.ae/wp-content/uploads/"
+
+COMPANY = {
+    "brand": "FEFCO Solutions",
+    "legal": "FEFCO Electromechanical Services LLC",
+    "phone_main": "+971507867872",
+    "phone_main_disp": "+971 50 786 7872",
+    "phone_2": "+971552152521",
+    "phone_2_disp": "+971 55 215 2521",
+    "whatsapp": "971507867872",
+    "email": "info@fefco.ae",
+    "email_solar": "solar@fefco.ae",
+    "address_en": "Qusais Industrial Area 5, Dubai, United Arab Emirates",
+    "address_ar": "القصيص الصناعية 5، دبي، الإمارات العربية المتحدة",
+    "clients": "700+",
+}
+
+SOCIAL = [
+    ("Instagram", "https://www.instagram.com/fefco_solutions/", "ig"),
+    ("Facebook", "https://www.facebook.com/profile.php?id=61595958106442", "fb"),
+    ("Threads", "https://www.threads.net/@fefco_solutions", "th"),
+    ("WhatsApp", "https://wa.me/971507867872", "wa"),
+]
+SOCIAL_AI = [
+    ("Instagram", "https://www.instagram.com/fefco_ai_solutions/", "ig"),
+    ("Facebook", "https://www.facebook.com/profile.php?id=61596586058451", "fb"),
+    ("X", "https://x.com/FEFCO_AI", "x"),
+    ("TikTok", "https://www.tiktok.com/@fefco_ai_solutions", "tt"),
+    ("YouTube", "https://www.youtube.com/@fefcoaisolutions", "yt"),
+]
+AI_SITE = "https://fefcoaisolutions.com/"
+
+BRANDS = ["Ariston", "Lamborghini Calorclima", "Helien", "Jinko Solar", "LONGi", "Canadian Solar",
+          "Sungrow", "Growatt", "Deye", "SolarEdge", "Go Green", "Sync Energy", "SuitX", "EIRA by Inspire"]
+
+CATEGORIES = {
+    "solar": {"en": "Solar energy", "ar": "الطاقة الشمسية"},
+    "water": {"en": "Water & hot water", "ar": "المياه والمياه الساخنة"},
+    "mep": {"en": "MEP, AMC & maintenance", "ar": "الأعمال الكهروميكانيكية والصيانة"},
+    "smart": {"en": "Smart & industrial tech", "ar": "التقنيات الذكية والصناعية"},
+}
+
+UI = {
+    "en": {
+        "lang_switch": "عربي",
+        "quote": "Get a free quote",
+        "call": "Call",
+        "whatsapp": "WhatsApp us",
+        "home": "Home",
+        "services": "Services",
+        "products": "Products",
+        "projects": "Projects",
+        "about": "About",
+        "contact": "Contact",
+        "all_services": "All services",
+        "view_service": "View service",
+        "why": "Why FEFCO",
+        "included": "What's included",
+        "process": "How we work",
+        "who": "Who it's for",
+        "faq": "Frequently asked questions",
+        "related": "Related services",
+        "cta_title": "Tell us about your property. We'll send a site survey slot within 24 hours.",
+        "cta_sub": "Free site survey across Dubai, Sharjah, Abu Dhabi and the Northern Emirates.",
+        "form_name": "Your name",
+        "form_phone": "Mobile number",
+        "form_email": "Email (optional)",
+        "form_service": "Service you need",
+        "form_emirate": "Emirate",
+        "form_msg": "Tell us about the property or the problem",
+        "form_send": "Send on WhatsApp",
+        "form_note": "Your request opens in WhatsApp with these details, addressed to our sales desk.",
+        "form_err": "Add your name and a mobile number so we can reach you.",
+        "emirates": ["Dubai", "Sharjah", "Abu Dhabi", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain", "Al Ain"],
+        "footer_about": "Solar, water and electromechanical solutions for homes, businesses and industry across the UAE.",
+        "footer_services": "Services",
+        "footer_company": "Company",
+        "footer_contact": "Contact",
+        "footer_follow": "Follow FEFCO",
+        "footer_ai": "FEFCO AI Solutions",
+        "rights": "All rights reserved.",
+        "privacy": "Privacy policy",
+        "emergency": "24-hour emergency response",
+        "breadcrumb_home": "Home",
+        "skip": "Skip to content",
+        "menu": "Menu",
+        "close": "Close",
+        "survey": "Book a free site survey",
+    },
+    "ar": {
+        "lang_switch": "English",
+        "quote": "اطلب عرض سعر مجاني",
+        "call": "اتصل",
+        "whatsapp": "راسلنا عبر واتساب",
+        "home": "الرئيسية",
+        "services": "الخدمات",
+        "products": "المنتجات",
+        "projects": "المشاريع",
+        "about": "من نحن",
+        "contact": "تواصل معنا",
+        "all_services": "جميع الخدمات",
+        "view_service": "تفاصيل الخدمة",
+        "why": "لماذا فيفكو",
+        "included": "ما تشمله الخدمة",
+        "process": "طريقة عملنا",
+        "who": "لمن هذه الخدمة",
+        "faq": "الأسئلة الشائعة",
+        "related": "خدمات ذات صلة",
+        "cta_title": "أخبرنا عن عقارك، وسنرسل لك موعد معاينة الموقع خلال 24 ساعة.",
+        "cta_sub": "معاينة مجانية للموقع في دبي والشارقة وأبوظبي والإمارات الشمالية.",
+        "form_name": "الاسم",
+        "form_phone": "رقم الجوال",
+        "form_email": "البريد الإلكتروني (اختياري)",
+        "form_service": "الخدمة المطلوبة",
+        "form_emirate": "الإمارة",
+        "form_msg": "أخبرنا عن العقار أو المشكلة",
+        "form_send": "أرسل عبر واتساب",
+        "form_note": "يُفتح طلبك في واتساب مع هذه التفاصيل موجّهاً إلى قسم المبيعات لدينا.",
+        "form_err": "أضف اسمك ورقم جوالك حتى نتمكن من التواصل معك.",
+        "emirates": ["دبي", "الشارقة", "أبوظبي", "عجمان", "رأس الخيمة", "الفجيرة", "أم القيوين", "العين"],
+        "footer_about": "حلول الطاقة الشمسية والمياه والأعمال الكهروميكانيكية للمنازل والشركات والمصانع في جميع أنحاء الإمارات.",
+        "footer_services": "الخدمات",
+        "footer_company": "الشركة",
+        "footer_contact": "التواصل",
+        "footer_follow": "تابع فيفكو",
+        "footer_ai": "فيفكو للذكاء الاصطناعي",
+        "rights": "جميع الحقوق محفوظة.",
+        "privacy": "سياسة الخصوصية",
+        "emergency": "استجابة طارئة على مدار 24 ساعة",
+        "breadcrumb_home": "الرئيسية",
+        "skip": "انتقل إلى المحتوى",
+        "menu": "القائمة",
+        "close": "إغلاق",
+        "survey": "احجز معاينة مجانية للموقع",
+    },
+}
+
+# Process templates (real sequences, so numbered steps are appropriate)
+PROCESS = {
+    "install": {
+        "en": [("Site survey", "An engineer visits, checks the roof or plant room, measures loads and photographs the site."),
+               ("Design and quote", "You get a written design, equipment list, timeline and a fixed price in AED."),
+               ("Approvals and installation", "We handle DEWA, SEWA or ADDC paperwork where needed, then install with our own team."),
+               ("Handover and aftercare", "Testing, commissioning, a walkthrough of the system and a maintenance plan.")],
+        "ar": [("معاينة الموقع", "يزور مهندسنا الموقع ويفحص السطح أو غرفة المعدات ويقيس الأحمال ويوثّق الموقع بالصور."),
+               ("التصميم وعرض السعر", "تحصل على تصميم مكتوب وقائمة بالمعدات وجدول زمني وسعر ثابت بالدرهم."),
+               ("الموافقات والتركيب", "نتولى معاملات هيئة كهرباء ومياه دبي أو الشارقة أو أبوظبي عند الحاجة، ثم يقوم فريقنا بالتركيب."),
+               ("التسليم وخدمة ما بعد البيع", "الاختبار والتشغيل وشرح النظام لك وخطة صيانة واضحة.")],
+    },
+    "service": {
+        "en": [("Call or WhatsApp", "Tell us the brand, the symptom and the location. Emergencies get a technician the same day where possible."),
+               ("Diagnosis on site", "The technician inspects, tests and explains the fault before any work starts."),
+               ("Repair with approval", "You approve the price first. We use genuine or equivalent-grade spare parts."),
+               ("Report and follow-up", "You receive a service report with photos and the next recommended visit.")],
+        "ar": [("اتصل أو راسلنا عبر واتساب", "أخبرنا بالعلامة التجارية والمشكلة والموقع. نرسل فنياً في اليوم نفسه للحالات الطارئة قدر الإمكان."),
+               ("التشخيص في الموقع", "يفحص الفني الجهاز ويختبره ويشرح لك العطل قبل بدء أي عمل."),
+               ("الإصلاح بعد موافقتك", "توافق على السعر أولاً، ونستخدم قطع غيار أصلية أو مكافئة الجودة."),
+               ("التقرير والمتابعة", "تستلم تقرير خدمة مع الصور وموعد الزيارة التالية الموصى بها.")],
+    },
+    "supply": {
+        "en": [("Requirement check", "Share the application, load or flow rate. We recommend the right model and size."),
+               ("Quotation and datasheets", "You receive a quote with datasheets, warranty terms and delivery time."),
+               ("Delivery and installation", "Delivery across the UAE, with installation by our technicians if you need it."),
+               ("Warranty support", "Warranty claims and spare parts are handled locally by our team in Dubai.")],
+        "ar": [("دراسة الاحتياج", "أخبرنا بالاستخدام أو الحمل أو معدل التدفق، وسنرشح لك الطراز والمقاس المناسبين."),
+               ("عرض السعر والمواصفات", "تستلم عرض سعر مع النشرات الفنية وشروط الضمان ومدة التوريد."),
+               ("التوريد والتركيب", "نوصل إلى جميع أنحاء الإمارات، ويقوم فنيونا بالتركيب إذا احتجت."),
+               ("دعم الضمان", "يتولى فريقنا في دبي مطالبات الضمان وقطع الغيار محلياً.")],
+    },
+    "amc": {
+        "en": [("Asset survey", "We list every system on site, its condition and its maintenance history."),
+               ("Maintenance plan", "A schedule of monthly, quarterly and annual tasks with clear response times."),
+               ("Planned visits", "Trained technicians carry out each visit and log readings, photos and actions."),
+               ("Reporting", "You receive visit reports and a yearly performance summary for your records.")],
+        "ar": [("حصر الأصول", "نحصر كل نظام في الموقع وحالته وسجل صيانته."),
+               ("خطة الصيانة", "جدول مهام شهرية وربع سنوية وسنوية مع أوقات استجابة واضحة."),
+               ("زيارات مجدولة", "ينفذ فنيون مدربون كل زيارة ويسجلون القراءات والصور والإجراءات."),
+               ("التقارير", "تستلم تقارير الزيارات وملخص أداء سنوي لسجلاتك.")],
+    },
+}
+
+FACTS = {
+    "en": [("700+", "clients served across the UAE"), ("24h", "emergency response line"),
+           ("DEWA", "Shams Dubai rooftop solar process handled for you"), ("7", "emirates served from our Dubai base")],
+    "ar": [("+700", "عميل في جميع أنحاء الإمارات"), ("24 ساعة", "خط استجابة للطوارئ"),
+           ("ديوا", "نتولى إجراءات شمس دبي للطاقة الشمسية على الأسطح"), ("7", "إمارات نخدمها من مقرنا في دبي")],
+}

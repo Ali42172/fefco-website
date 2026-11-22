@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+# Go Green and partner products listed on the current fefco.ae product pages.
+PRODUCT_GROUPS = [
+ {"id": "storage", "img": "2026/01/1.jpg",
+  "en": ("Solar energy storage systems", "All-in-one storage units with built-in inverter, battery and charge controller for homes, cabins and sites."),
+  "ar": ("أنظمة تخزين الطاقة الشمسية", "وحدات تخزين متكاملة بمحول وبطارية ووحدة شحن مدمجة للمنازل والكبائن والمواقع."),
+  "items": ["Solar Energy Storage System PPS-4KWH", "Solar Energy Storage System PPS-2KWH", "Solar Energy Storage System ES-1000", "Solar Energy Storage System ES-500", "Solar Power System CPES-150", "70 kWh Air-Cooled Distributed Storage"]},
+ {"id": "batteries", "img": "2026/01/28.jpg",
+  "en": ("LiFePO4 batteries", "Lithium iron phosphate batteries from 12.8 V to 51.2 V, wall-mounted, rack and stackable."),
+  "ar": ("بطاريات ليثيوم فوسفات الحديد", "بطاريات LiFePO4 من 12.8 حتى 51.2 فولت، جدارية ورفية وقابلة للتكديس."),
+  "items": ["12.8V 100Ah LiFePO4", "12.8V 120Ah LiFePO4", "12.8V 200Ah LiFePO4", "12.8V 300Ah LiFePO4", "25.6V 100Ah LiFePO4", "25.6V 200Ah LiFePO4", "25.6V 200Ah Stackable LiFePO4", "51.2V 200Ah LiFePO4", "51.2V 314Ah LiFePO4", "51.2V 628Ah LiFePO4", "6.0 kWh LiFePO4"]},
+ {"id": "inverters", "img": "2025/12/24V-5000W.png",
+  "en": ("Inverters and pump drives", "Hybrid and off-grid inverters, single and three phase, plus solar pump inverters for irrigation."),
+  "ar": ("المحولات ومشغلات المضخات", "محولات هجينة ومستقلة أحادية وثلاثية الطور، ومحولات مضخات شمسية للري."),
+  "items": ["GGIV 2 kW", "GGIV 6 kW", "GGIV-1P Series", "GGIV 3P 14 kW", "24V 5000W Hybrid Inverter Single Phase", "GG-SPI Series Solar Pump Inverter"]},
+ {"id": "panels", "img": "2025/12/610-650Wp1.png",
+  "en": ("Solar panels and cable", "High-output modules and UV-rated DC solar cable."),
+  "ar": ("الألواح الشمسية والكابلات", "ألواح عالية القدرة وكابلات تيار مستمر مقاومة للأشعة فوق البنفسجية."),
+  "items": ["GGSP 610 to 650 W modules", "Jinko, LONGi and Canadian Solar modules", "DC solar cable 6 mm²"]},
+ {"id": "lighting", "img": "2025/12/ALL-IN-ONE-INTEGRATED-SOLAR-STREET-LIGHT-140w.png",
+  "en": ("Solar lighting", "Integrated street lights, flood lights and compact solar lamps."),
+  "ar": ("الإنارة الشمسية", "أعمدة إنارة متكاملة وكشافات ومصابيح شمسية صغيرة."),
+  "items": ["All-in-one integrated solar street light 100 W", "All-in-one integrated solar street light 140 W", "Solar flood light GGFL 2.0 / 4.0", "Mini King Light 1.0"]},
+ {"id": "heaters", "img": "2025/10/Lamborghini-CaloreClima-Made-in-Italy.png",
+  "en": ("Water heaters", "Solar and electric water heaters from Lamborghini Calorclima, Ariston and Helien."),
+  "ar": ("سخانات المياه", "سخانات شمسية وكهربائية من لامبورغيني كالوركليما وأريستون وهيلين."),
+  "items": ["Lamborghini Calorclima electric water heaters", "Ariston solar and electric water heaters", "Helien solar water heaters"]},
+]

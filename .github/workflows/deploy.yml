@@ -1,0 +1,55 @@
+name: Build and deploy fefco.ae
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency: {group: pages, cancel-in-progress: true}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install pillow
+      - name: Build (root path when a custom domain is set, /repo-name otherwise)
+        run: |
+          if [ -f static/CNAME ]; then BP=""; else BP="/${GITHUB_REPOSITORY#*/}"; fi
+          echo "BASE_PATH=$BP"
+          BASE_PATH="$BP" MEDIA_BASE="$BP/assets/media/" python build.py
+      - name: Copy photos from the WordPress media library
+        run: |
+          mkdir -p dist/assets/media
+          while read -r p; do
+            [ -z "$p" ] && continue
+            mkdir -p "dist/assets/media/$(dirname "$p")"
+            curl -sfL --retry 3 "https://fefco.ae/wp-content/uploads/$p" -o "dist/assets/media/$p" || echo "missing: $p"
+          done < media.txt
+          if [ -d media-extra ]; then cp -r media-extra/. dist/assets/media/; fi
+          du -sh dist/assets/media
+      - name: Shrink large photos
+        run: |
+          python - <<'PY'
+          import os
+          from PIL import Image
+          for r,_,fs in os.walk('dist/assets/media'):
+              for f in fs:
+                  p=os.path.join(r,f)
+                  if f.lower().endswith(('.jpg','.jpeg')):
+                      try:
+                          im=Image.open(p); im.thumbnail((1800,1800)); im.convert('RGB').save(p,quality=82,optimize=True,progressive=True)
+                      except Exception as e: print('skip',p,e)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: dist}
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: {name: github-pages, url: '${{ steps.d.outputs.page_url }}'}
+    steps:
+      - id: d
+        uses: actions/deploy-pages@v4
