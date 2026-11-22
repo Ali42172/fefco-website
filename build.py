@@ -15,6 +15,9 @@ MEDIA_USED = set()
 GEN = {"villa": "2026/11/image.png", "carport": "2026/11/image-1.png", "cleaning": "2026/11/image-2.png", "audit": "2026/11/image-3.png", "water": "2026/11/image-4.png", "ac": "2026/11/image-5.png"}
 BIG_PNG = set(GEN.values())
 TODAY = datetime.date.today().isoformat()
+import hashlib
+def _ver(f): return hashlib.md5(open(os.path.join(os.path.dirname(__file__), "static", "assets", f), "rb").read()).hexdigest()[:8]
+V_CSS, V_JS = _ver("site.css"), _ver("site.js")
 SERVICES = SOLAR + WATER + MEP
 BY_SLUG = {s["slug"]: s for s in SERVICES}
 LEADER_NAME = {"en": "Mustafa Asgar Ali", "ar": "مصطفى أصغر علي"}
@@ -117,7 +120,7 @@ def head(lang, title, desc, path, image=None, extra_ld=None):
 <meta name="theme-color" content="#2A429E">
 <link rel="icon" href="/assets/favicon.png">
 {FONTS}
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/site.css?v={V_CSS}">
 {''.join('<script type="application/ld+json">'+json.dumps(x, ensure_ascii=False)+'</script>' for x in ld)}
 </head>
 <body>
@@ -212,7 +215,7 @@ def footer(lang):
 </div></footer>
 <a class="fab" href="{wa_link()}" rel="noopener">{I['wa']}{'Chat on WhatsApp' if lang=='en' else 'تحدث عبر واتساب'}</a>
 <nav class="mbar" aria-label="Quick contact"><a class="c" href="tel:{COMPANY['phone_main']}">{I['phone']}{u['call']}</a><a class="w" href="{wa_link()}" rel="noopener">{I['wa']}WhatsApp</a><a class="q" href="#quote">{'Free quote' if lang=='en' else 'عرض سعر مجاني'}</a></nav>
-<script src="/assets/site.js" defer></script>
+<script src="/assets/site.js?v={V_JS}" defer></script>
 </body></html>'''
 
 def write(lang, path, html_):
