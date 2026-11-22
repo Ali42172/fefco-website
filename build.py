@@ -361,16 +361,17 @@ def page_home(lang):
 <div><span class="kicker">{h['kicker']}</span><h1>{h['h1']}</h1><p class="lead">{h['lead']}</p>
 <div class="ctas"><a class="btn btn-primary" href="#quote">{u['survey']} {I['arr']}</a><a class="btn btn-wa" href="{wa_link()}" rel="noopener">{I['wa']}{u['whatsapp']}</a></div>
 <div class="trust">{''.join(f'<span>{I["check"]}{t}</span>' for t in h['trust'])}</div></div>
-<div class="hero-visual"><figure class="hero-photo"><img src="{img(GEN['villa'])}" alt="{h['photo_cap']}" fetchpriority="high" width="1672" height="941"><figcaption>{h['photo_cap']}</figcaption></figure>
+<div class="hero-visual"><figure class="hero-photo"><img src="{img(GEN['villa'])}" alt="{h['photo_cap']}" fetchpriority="high" width="1672" height="941"><figcaption>{h['photo_cap']}</figcaption></figure></div></div>
+</div></section>
+<div class="chips-band"><p>{h['brands']}</p><div class="marquee" aria-hidden="false">{chips}</div></div>
+<section class="band sun calc-band"><div class="wrap"><div><span class="kicker">{'Solar savings estimator' if lang=='en' else 'حاسبة التوفير'}</span><h2>{'What would rooftop solar save you?' if lang=='en' else 'كم ستوفر لك الطاقة الشمسية على سطحك؟'}</h2><p class="lead">{'Pick your property type and slide to your average monthly DEWA bill. You get an instant estimate; our free site survey gives the exact figure.' if lang=='en' else 'اختر نوع العقار وحرّك المؤشر إلى متوسط فاتورة ديوا الشهرية. تحصل على تقدير فوري، وتعطيك المعاينة المجانية الرقم الدقيق.'}</p></div>
 <div class="calc" aria-labelledby="calc-t"><h2 id="calc-t">{h['calc_t']}</h2><p class="sub">{h['calc_s']}</p>
 <div class="seg" role="group" aria-label="Property type">{types}</div>
 <label for="bill">{h['bill']} <output id="billOut" for="bill"></output></label>
 <input id="bill" type="range" min="500" max="40000" step="250" value="2000">
 <div class="res"><div class="big"><small>{h['r3']}</small><b id="rSave"></b></div><div><small>{h['r1']}</small><b id="rSize"></b></div><div><small>{h['r4']}</small><b id="rPay"></b></div><div style="grid-column:1/-1"><small>{h['r2']}</small><b id="rCost"></b></div></div>
 <a class="btn btn-wa" href="{wa_link()}" rel="noopener">{I['wa']}{h['calc_btn']}</a>
-<p class="note">{h['calc_note']}</p></div></div>
-</div></section>
-<div class="chips-band"><p>{h['brands']}</p><div class="marquee" aria-hidden="false">{chips}</div></div>
+<p class="note">{h['calc_note']}</p></div></section>
 <section class="band"><div class="wrap"><div class="sec-head"><span class="kicker">{h['explore_k']}</span><h2>{h['explore_h']}</h2><p>{h['explore_p']}</p></div>
 <div class="explorer"><div class="tabs" role="tablist" aria-orientation="vertical">{tabs}</div><div>{panels}</div></div></div></section>
 <section class="band sky"><div class="wrap"><div class="sec-head"><span class="kicker">{h['featured_k']}</span><h2>{h['featured_h']}</h2></div><div class="grid g3">{featured}</div>
