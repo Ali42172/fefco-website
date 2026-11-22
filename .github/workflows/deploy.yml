@@ -2,6 +2,9 @@ name: Build and deploy fefco.ae
 on:
   push:
     branches: [main]
+  workflow_run:
+    workflows: ["Import photos into the repo"]
+    types: [completed]
   workflow_dispatch:
 permissions:
   contents: read
@@ -13,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with: {ref: main}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - run: pip install pillow
@@ -27,6 +31,8 @@ jobs:
           while read -r p; do
             [ -z "$p" ] && continue
             mkdir -p "dist/assets/media/$(dirname "$p")"
+            j="${p%.png}.jpg"
+            if [ -f "dist/assets/media/$p" ] || [ -f "dist/assets/media/$j" ]; then continue; fi
             curl -sfL --retry 3 "https://fefco.ae/wp-content/uploads/$p" -o "dist/assets/media/$p" || echo "missing: $p"
           done < media.txt
           if [ -d media-extra ]; then cp -r media-extra/. dist/assets/media/; fi

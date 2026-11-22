@@ -1,0 +1,47 @@
+name: Import photos into the repo
+# Copies every photo listed in media.txt from the old WordPress media library into
+# static/assets/media/ and commits them, so the site no longer depends on WordPress.
+on:
+  push:
+    branches: [main]
+    paths: [media.txt]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install pillow
+      - name: Download missing photos and optimise
+        run: |
+          python - <<'PY'
+          import os, subprocess
+          from PIL import Image
+          base = 'static/assets/media'
+          for p in [l.strip() for l in open('media.txt') if l.strip()]:
+              to_jpg = p.startswith('2026/11/') and p.endswith('.png')
+              dest = os.path.join(base, p[:-4] + '.jpg' if to_jpg else p)
+              if os.path.exists(dest): continue
+              os.makedirs(os.path.dirname(dest), exist_ok=True)
+              tmp = dest + '.tmp'
+              r = subprocess.run(['curl', '-sfL', '--retry', '3', 'https://fefco.ae/wp-content/uploads/' + p, '-o', tmp])
+              if r.returncode != 0: print('missing', p); continue
+              try:
+                  im = Image.open(tmp)
+                  if to_jpg or dest.lower().endswith(('.jpg', '.jpeg')):
+                      im = im.convert('RGB'); im.thumbnail((1800, 1800)); im.save(dest, 'JPEG', quality=82, optimize=True, progressive=True); os.remove(tmp)
+                  else:
+                      os.replace(tmp, dest)
+              except Exception as e:
+                  print('keep original', p, e); os.replace(tmp, dest)
+          PY
+          du -sh static/assets/media
+      - name: Commit
+        run: |
+          git config user.name "fefco-bot"; git config user.email "info@fefco.ae"
+          git add static/assets/media
+          git diff --cached --quiet && echo "nothing new" || (git commit -m "Import photos from WordPress media library" && git push)

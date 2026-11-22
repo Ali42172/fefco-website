@@ -14,6 +14,7 @@ if os.environ.get("MEDIA_BASE"): data_common.MEDIA_BASE = os.environ["MEDIA_BASE
 MEDIA_USED = set()
 GEN = {"villa": "2026/11/image.png", "carport": "2026/11/image-1.png", "cleaning": "2026/11/image-2.png", "audit": "2026/11/image-3.png", "water": "2026/11/image-4.png", "ac": "2026/11/image-5.png"}
 BIG_PNG = set(GEN.values())
+def _is_big_png(p): return p in BIG_PNG or (p.startswith("2026/11/") and p.endswith(".png"))
 TODAY = datetime.date.today().isoformat()
 import hashlib
 def _ver(f): return hashlib.md5(open(os.path.join(os.path.dirname(__file__), "static", "assets", f), "rb").read()).hexdigest()[:8]
@@ -27,7 +28,7 @@ def img(p):
     if p.startswith("http") or p.startswith("/"): return p
     MEDIA_USED.add(p)
     # large PNGs (ChatGPT renders) are converted to JPEG by the deploy workflow
-    if p in BIG_PNG and not data_common.MEDIA_BASE.startswith("http"): p = p[:-4] + ".jpg"
+    if _is_big_png(p) and not data_common.MEDIA_BASE.startswith("http"): p = p[:-4] + ".jpg"
     return data_common.MEDIA_BASE + p
 def abs_img(p):
     u = img(p)
@@ -86,7 +87,7 @@ def org_schema():
          "telephone": COMPANY["phone_main"], "email": COMPANY["email"],
          "address": {"@type": "PostalAddress", "streetAddress": "Deira Tower, 2307 Baniyas Road, Al Rigga", "addressLocality": "Deira, Dubai", "addressRegion": "Dubai", "addressCountry": "AE"},
          "geo": {"@type": "GeoCoordinates", "latitude": COMPANY["geo"][0], "longitude": COMPANY["geo"][1]}, "hasMap": COMPANY["maps"],
-         "founder": {"@type": "Person", "name": "Mustafa Asgar Ali", "alternateName": "Mustafa Fefco", "jobTitle": "Founder"},
+         "founder": {"@type": "Person", "name": "Mustafa Asgar Ali", "alternateName": ["Mustafa Fefco", "Mustafa Ali"], "jobTitle": "Founder", "memberOf": [{"@type": "Organization", "name": "Building Materials Group (BMG)", "description": "Business group under the patronage of Dubai Chamber; Board Member"}, {"@type": "Organization", "name": "Dubai Chamber of Commerce"}]},
          "areaServed": [{"@type": "Country", "name": "United Arab Emirates"}, "Dubai", "Sharjah", "Abu Dhabi", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"],
          "sameAs": [s[1] for s in SOCIAL if s[2] != "wa"],
          "subOrganization": {"@type": "Organization", "name": "FEFCO AI Solutions", "url": AI_SITE, "sameAs": [s[1] for s in SOCIAL_AI]},
@@ -261,9 +262,9 @@ HOME = {
         "proj_k": "Our work", "proj_h": "Real installations across the UAE", "proj_p": "Villas, factories, hotels and farms: a selection from FEFCO's project archive.",
         "proj_btn": "See more projects",
         "lead_k": "Founder", "lead_h": "Led by a founder who shows up on site",
-        "lead_p": "Mustafa Asgar Ali founded FEFCO and still runs it hands-on. He is regularly on client sites and at industry events such as WETEX Dubai, demonstrating new technology to customers in person.",
-        "lead_pts": ["Demonstrates new technology to clients in person, from SuitX exoskeletons to solar-cleaning solutions", "Leads partnerships with Lamborghini Calorclima and Inspire Clean Energy (EIRA)", "Oversees FEFCO AI Solutions, the group's AI and digital division"],
-        "lead_tag": "Founder, FEFCO Solutions", "lead_tag2": "Trialling SuitX exoskeletons before launch in the UAE",
+        "lead_p": "Mustafa Asgar Ali founded FEFCO and still runs it hands-on. He is a Board Member of the Building Materials Group (BMG) under the patronage of Dubai Chamber, speaks at industry events across the UAE, and is regularly on client sites himself.",
+        "lead_pts": ["Board Member of the Building Materials Group (BMG), under the patronage of Dubai Chamber", "Regular speaker at building-materials and clean-energy industry events in the UAE", "Leads partnerships with Lamborghini Calorclima and Inspire Clean Energy (EIRA)", "Oversees FEFCO AI Solutions, the group's AI and digital division"],
+        "lead_tag": "Founder, FEFCO Solutions · Board Member, BMG", "lead_tag2": "Founder, FEFCO Solutions",
         "seg_k": "Who we work with", "seg_h": "From one villa to a whole portfolio",
         "segs": [("Homeowners", "Solar, hot water, EV charging and plumbing for villas and townhouses."), ("Businesses", "Offices, shops, restaurants and hotels that want lower running costs."), ("Industry", "Factories, warehouses and farms with big roofs and big loads."), ("Facility managers", "One accountable contractor for many systems and many sites.")],
         "faq_k": "Questions", "faq_h": "What customers ask us most",
@@ -289,9 +290,9 @@ HOME = {
         "proj_k": "أعمالنا", "proj_h": "تركيبات حقيقية في جميع أنحاء الإمارات", "proj_p": "فلل ومصانع وفنادق ومزارع: مختارات من أرشيف مشاريع فيفكو.",
         "proj_btn": "شاهد المزيد من المشاريع",
         "lead_k": "المؤسس", "lead_h": "بقيادة مؤسس حاضر في الموقع",
-        "lead_p": "أسس مصطفى أصغر علي فيفكو وما زال يديرها بأسلوب عملي مباشر. يحضر باستمرار إلى مواقع العملاء والفعاليات المتخصصة مثل ويتكس دبي، ويعرض التقنيات الجديدة على العملاء بنفسه.",
-        "lead_pts": ["يعرض التقنيات الجديدة على العملاء بنفسه، من هياكل SuitX إلى حلول تنظيف الألواح الشمسية", "يقود الشراكات مع لامبورغيني كالوركليما وإنسباير كلين إنرجي (EIRA)", "يشرف على فيفكو للذكاء الاصطناعي، القسم الرقمي للمجموعة"],
-        "lead_tag": "المؤسس، فيفكو سوليوشنز", "lead_tag2": "تجربة هياكل SuitX قبل إطلاقها في الإمارات",
+        "lead_p": "أسس مصطفى أصغر علي فيفكو وما زال يديرها بأسلوب عملي مباشر. وهو عضو مجلس إدارة مجموعة مواد البناء (BMG) تحت رعاية غرفة دبي، ويتحدث في فعاليات القطاع في أنحاء الإمارات، ويحضر بنفسه إلى مواقع العملاء.",
+        "lead_pts": ["عضو مجلس إدارة مجموعة مواد البناء (BMG) تحت رعاية غرفة دبي", "متحدث دائم في فعاليات قطاعي مواد البناء والطاقة النظيفة في الإمارات", "يقود الشراكات مع لامبورغيني كالوركليما وإنسباير كلين إنرجي (EIRA)", "يشرف على فيفكو للذكاء الاصطناعي، القسم الرقمي للمجموعة"],
+        "lead_tag": "المؤسس، فيفكو سوليوشنز · عضو مجلس إدارة BMG", "lead_tag2": "المؤسس، فيفكو سوليوشنز",
         "seg_k": "مع من نعمل", "seg_h": "من فيلا واحدة إلى محفظة عقارية كاملة",
         "segs": [("أصحاب المنازل", "الطاقة الشمسية والمياه الساخنة وشحن السيارات والسباكة للفلل والتاون هاوس."), ("الشركات", "المكاتب والمحلات والمطاعم والفنادق الراغبة في خفض تكاليف التشغيل."), ("الصناعة", "المصانع والمستودعات والمزارع ذات الأسطح الكبيرة والأحمال العالية."), ("مديرو المرافق", "مقاول واحد مسؤول عن أنظمة ومواقع متعددة.")],
         "faq_k": "أسئلة", "faq_h": "أكثر ما يسألنا عنه العملاء",
@@ -333,17 +334,40 @@ PROJECTS_MORE = [
  ("2023/09/grp2.jpeg", ("GRP tank assembly", "تجميع خزان فايبرجلاس")), ("2023/09/dayl1.jpg", ("Daylighting system", "نظام إضاءة طبيعية")),
  ("2023/09/stree.jpg", ("Solar street lights", "أعمدة إنارة شمسية")), ("2023/09/solarparking2.jpeg", ("Solar parking shade", "مظلة مواقف شمسية")),
  ("2023/09/ro.jpg", ("RO water treatment", "معالجة مياه بالتناضح العكسي")), ("2023/09/IMG-20190212-WA0039.jpg", ("Electrical works", "أعمال كهربائية")),
- ("2023/09/PHOTO-2023-09-16-22-28-34.jpg", ("SuitX demonstration", "عرض SuitX التجريبي")), ("2023/09/20210621_171528.jpg", ("FEFCO office", "مكتب فيفكو")),
+ ("2023/09/20210621_171528.jpg", ("FEFCO office", "مكتب فيفكو")),
 ]
 FEATURED = ["solar-panel-installation-dubai", "solar-water-heater-dubai", "solar-water-heater-repair-maintenance-dubai", "ev-charger-installation-dubai", "solar-panel-cleaning-maintenance-dubai", "amc-annual-maintenance-contract-dubai"]
-LEADER_IMG = "2023/09/PHOTO-2023-09-16-22-28-32-2.jpg"
+LEADER_IMG = "2026/11/image-9.png"
+FOUNDER_PHOTOS = [
+ ("2026/11/image-14.png", ("Speaking at a Building Materials Group (BMG) event", "متحدثاً في فعالية لمجموعة مواد البناء (BMG)")),
+ ("2026/11/image-19.png", ("At Dubai Chamber of Commerce", "في غرفة تجارة دبي")),
+ ("2026/11/image-15.png", ("Speaking at a building materials event in association with Dubai Chamber", "متحدثاً في فعالية لمواد البناء بالتعاون مع غرفة دبي")),
+ ("2026/11/image-18.png", ("Presenting FEFCO solutions on stage", "يقدم حلول فيفكو على المسرح")),
+ ("2026/11/image-13.png", ("Recognition at an industry event", "تكريم في فعالية للقطاع")),
+ ("2026/11/image-16.png", ("Keynote address", "كلمة رئيسية")),
+ ("2026/11/image-11.png", ("FEFCO at the CleanTech Innovators exhibition", "فيفكو في معرض CleanTech Innovators")),
+ ("2026/11/image-17.png", ("Welcoming guests at the FEFCO stand", "استقبال الزوار في جناح فيفكو")),
+ ("2026/11/image-12.png", ("Presenting flexible solar panels", "عرض الألواح الشمسية المرنة")),
+ ("2026/11/image-10.png", ("Media interview", "مقابلة إعلامية")),
+ ("2026/11/image-8.png", ("Inspecting a rooftop solar installation", "فحص تركيب ألواح شمسية على سطح")),
+ ("2026/11/image-6.png", ("On a project site", "في موقع مشروع")),
+ ("2026/11/image-7.png", ("Site visit", "زيارة موقع")),
+]
+AFFIL = [("BMG", "Building Materials Group", "مجموعة مواد البناء", "Board Member", "عضو مجلس الإدارة"), ("Dubai Chamber", "Dubai Chamber of Commerce", "غرفة تجارة دبي", "Member", "عضو")]
+def affil_html(lang):
+    k = 0 if lang == "en" else 1
+    return '<div class="affil">' + "".join(f'<div class="aff"><b>{a[0]}</b><span>{a[1+k]}<small>{a[3+k]}</small></span></div>' for a in AFFIL) + '</div>'
+def founder_strip(lang, n=None):
+    k = 0 if lang == "en" else 1
+    items = FOUNDER_PHOTOS[:n] if n else FOUNDER_PHOTOS
+    return '<div class="fgal">' + "".join(f'<figure><img src="{img(p)}" alt="{E(c[k])}" loading="lazy"><figcaption>{E(c[k])}</figcaption></figure>' for p, c in items) + '</div>' 
 
 def page_home(lang):
     h = HOME[lang]; u = UI[lang]
     types = "".join(f'<button type="button" data-t="{k}" aria-pressed="{"true" if i==0 else "false"}">{v}</button>' for i, (k, v) in enumerate(h["types"]))
     chips = "".join(f'<span class="chip"><i></i>{b}</span>' for b in BRANDS) * 2
     tabs = ""; panels = ""
-    cat_img = {"solar": "2023/09/IMG_20200409_111132.jpg", "water": "2024/05/installation1.jpg", "mep": "2024/05/repair1.jpeg", "smart": "2023/09/PHOTO-2023-09-16-22-28-34.jpg"}
+    cat_img = {"solar": "2023/09/IMG_20200409_111132.jpg", "water": "2024/05/installation1.jpg", "mep": "2024/05/repair1.jpeg", "smart": "2023/09/PHOTO-2023-09-16-22-28-31.jpg"}
     cat_desc = {"en": {"solar": "Generate, store and use your own clean power, with the paperwork handled.", "water": "Hot, clean and cool water for every tap, from heaters to tanks and filters.", "mep": "Electrical, plumbing and mechanical works, plus contracts that keep it all running.", "smart": "Monitoring, security and wearable tech for sites and industry."},
                 "ar": {"solar": "أنتج طاقتك النظيفة وخزّنها واستخدمها، مع إنجاز المعاملات نيابة عنك.", "water": "مياه ساخنة ونظيفة وباردة لكل صنبور، من السخانات إلى الخزانات والفلاتر.", "mep": "أعمال كهربائية وسباكة وميكانيكية، مع عقود تحافظ على عمل كل شيء.", "smart": "المراقبة والأمن والتقنيات القابلة للارتداء للمواقع والصناعة."}}
     for i, c in enumerate(["solar", "water", "mep", "smart"]):
@@ -384,7 +408,8 @@ def page_home(lang):
 <section class="band"><div class="wrap"><div class="sec-head"><span class="kicker">{h['proj_k']}</span><h2>{h['proj_h']}</h2><p>{h['proj_p']}</p></div><div class="gallery">{gal}</div>
 <p style="margin-top:28px"><a class="btn btn-ghost" href="{url(lang,'projects')}">{h['proj_btn']} {I['arr']}</a></p></div></section>
 <section class="band sky"><div class="wrap leader"><figure><img src="{img(LEADER_IMG)}" alt="{E(name)}" loading="lazy"><div class="tag"><b>{E(name)}</b><span>{h['lead_tag']}</span></div></figure>
-<div><span class="kicker">{h['lead_k']}</span><h2>{h['lead_h']}</h2><p class="lead">{h['lead_p']}</p><ul class="pts">{pts}</ul><a class="btn btn-primary" href="{url(lang,'about')}">{u['about']} {I['arr']}</a></div></div></section>
+<div><span class="kicker">{h['lead_k']}</span><h2>{h['lead_h']}</h2><p class="lead">{h['lead_p']}</p>{affil_html(lang)}<ul class="pts">{pts}</ul><a class="btn btn-primary" href="{url(lang,'about')}">{u['about']} {I['arr']}</a></div></div>
+<div class="wrap" style="margin-top:40px">{founder_strip(lang, 4)}</div></section>
 <section class="band"><div class="wrap"><div class="sec-head"><span class="kicker">{h['seg_k']}</span><h2>{h['seg_h']}</h2></div><div class="grid g4">{segs}</div></div></section>
 <section class="band sky"><div class="wrap"><div class="sec-head"><span class="kicker">{h['faq_k']}</span><h2>{h['faq_h']}</h2></div>{faq_block(lang, HOME_FAQ[lang])}</div></section>
 <section class="band"><div class="wrap"><div class="split" style="align-items:center"><div><span class="kicker">{h['social_k']}</span><h2>{h['social_h']}</h2><p class="lead">{h['social_p']}</p><div class="soc-links">{soc_links}</div></div><div class="social-grid" style="grid-template-columns:repeat(3,1fr)">{soc_tiles}</div></div></div></section>
@@ -487,8 +512,9 @@ def page_about(lang):
     inner = f'''<section class="band"><div class="wrap split" style="align-items:center"><div class="prose"><span class="kicker">{'Our story' if lang=='en' else 'قصتنا'}</span><h2>{'Solar, water and MEP under one roof' if lang=='en' else 'الطاقة الشمسية والمياه والأعمال الكهروميكانيكية تحت سقف واحد'}</h2><p>{story}</p>{ai}</div>
 <div class="gallery" style="grid-template-columns:1fr 1fr;grid-auto-rows:200px"><figure class="w2"><img src="{img('2023/09/20210621_171528.jpg')}" alt="FEFCO office" loading="lazy"></figure><figure><img src="{img('2024/05/repair1.jpeg')}" alt="" loading="lazy"></figure><figure><img src="{img('2023/09/solar11-scaled.jpg')}" alt="" loading="lazy"></figure></div></div></section>
 <section class="band tight sky"><div class="wrap facts">{facts}</div></section>
-<section class="band"><div class="wrap leader"><figure><img src="{img('2023/09/PHOTO-2023-09-16-22-28-34.jpg')}" alt="{E(name)}" loading="lazy"><div class="tag"><b>{E(name)}</b><span>{h['lead_tag']}</span></div></figure>
-<div><span class="kicker">{h['lead_k']}</span><h2>{h['lead_h']}</h2><p class="lead">{h['lead_p']}</p><ul class="pts">{pts}</ul></div></div></section>
+<section class="band"><div class="wrap leader"><figure><img src="{img('2026/11/image-15.png')}" alt="{E(name)}" loading="lazy" style="object-position:center"><div class="tag"><b>{E(name)}</b><span>{h['lead_tag']}</span></div></figure>
+<div><span class="kicker">{h['lead_k']}</span><h2>{h['lead_h']}</h2><p class="lead">{h['lead_p']}</p>{affil_html(lang)}<ul class="pts">{pts}</ul></div></div></section>
+<section class="band sky"><div class="wrap"><div class="sec-head"><span class="kicker">{'In the field' if lang=='en' else 'في الميدان'}</span><h2>{'Mustafa Asgar Ali at work and on stage' if lang=='en' else 'مصطفى أصغر علي في العمل وعلى المنصة'}</h2></div>{founder_strip(lang)}</div></section>
 <section class="band mint"><div class="wrap"><div class="sec-head"><span class="kicker">{'How we work' if lang=='en' else 'قيمنا'}</span><h2>{'What we stand for' if lang=='en' else 'ما نؤمن به'}</h2></div><div class="grid g3">{vcards}</div></div></section>'''
     simple_page(lang, "about", title, desc, "FEFCO Solutions" if lang == "en" else "فيفكو سوليوشنز", h1, lead, inner, "about")
 

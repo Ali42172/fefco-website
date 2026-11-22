@@ -391,3 +391,18 @@ html[dir=rtl] .fab{right:auto;left:22px}
 @media (max-width:1100px){.calc-band .wrap{grid-template-columns:1fr;gap:28px}}
 @media (max-width:720px){.hero-photo{height:280px}.calc-band .calc .res{grid-template-columns:1fr 1fr}}
 html[dir=rtl] .topbar .tb-l{direction:rtl}
+
+.affil{display:flex;flex-wrap:wrap;gap:12px;margin:6px 0 4px}
+.aff{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 16px 10px 10px}
+html[dir=rtl] .aff{padding:10px 10px 10px 16px}
+.aff b{display:grid;place-items:center;min-width:56px;height:44px;padding:0 10px;border-radius:12px;background:var(--blue);color:#fff;font:700 15px var(--head);letter-spacing:.02em}
+.aff:nth-child(2) b{background:#fff;color:var(--blue);border:1.5px solid var(--blue);font-size:13px}
+.aff span{display:flex;flex-direction:column;font:600 15px var(--head);color:var(--ink);line-height:1.25}
+.aff small{font:500 13px var(--body);color:var(--muted)}
+.fgal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.fgal figure{margin:0;position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:var(--sky)}
+.fgal img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.fgal figure:hover img{transform:scale(1.04)}
+.fgal figcaption{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(255,255,255,.95);color:var(--ink);font-size:13px;font-weight:500;border-radius:12px;padding:6px 10px;line-height:1.35}
+@media (max-width:1100px){.fgal{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:720px){.fgal{grid-template-columns:repeat(2,minmax(0,1fr))}}

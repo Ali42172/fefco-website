@@ -272,7 +272,7 @@ MEP = [
 },
 {
  "slug": "suitx-exoskeletons-uae", "cat": "smart", "proc": "supply",
- "img": "2023/09/PHOTO-2023-09-16-22-28-32-2.jpg", "gallery": ["2023/09/PHOTO-2023-09-16-22-28-34.jpg", "2023/09/PHOTO-2023-09-16-22-28-33.jpg", "2023/09/PHOTO-2023-09-16-22-28-32.jpg"],
+ "img": "2023/09/PHOTO-2023-09-16-22-28-31.jpg", "gallery": ["2023/09/PHOTO-2023-09-16-22-28-32.jpg"],
  "old": ["/suitx-solutions/"],
  "en": {
   "nav": "SuitX industrial exoskeletons",
