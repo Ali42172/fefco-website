@@ -17,8 +17,10 @@ COMPANY = {
     "whatsapp": "971507867872",
     "email": "info@fefco.ae",
     "email_solar": "solar@fefco.ae",
-    "address_en": "Qusais Industrial Area 5, Dubai, United Arab Emirates",
-    "address_ar": "القصيص الصناعية 5، دبي، الإمارات العربية المتحدة",
+    "address_en": "Deira Tower, 2307 Baniyas Road, Al Rigga, Deira, Dubai, UAE",
+    "address_ar": "برج ديرة، 2307 شارع بني ياس، الرقة، ديرة، دبي، الإمارات",
+    "maps": "https://www.google.com/maps/place/FEFCO+SOLUTIONS/@25.268446,55.3068326,17z",
+    "geo": (25.268446, 55.3068326),
     "clients": "700+",
 }
 

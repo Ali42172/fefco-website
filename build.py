@@ -12,6 +12,8 @@ BASE_PATH = os.environ.get("BASE_PATH", "").rstrip("/")
 import data_common
 if os.environ.get("MEDIA_BASE"): data_common.MEDIA_BASE = os.environ["MEDIA_BASE"]
 MEDIA_USED = set()
+GEN = {"villa": "2026/11/image.png", "carport": "2026/11/image-1.png", "cleaning": "2026/11/image-2.png", "audit": "2026/11/image-3.png", "water": "2026/11/image-4.png", "ac": "2026/11/image-5.png"}
+BIG_PNG = set(GEN.values())
 TODAY = datetime.date.today().isoformat()
 SERVICES = SOLAR + WATER + MEP
 BY_SLUG = {s["slug"]: s for s in SERVICES}
@@ -20,7 +22,10 @@ E = html.escape
 
 def img(p):
     if p.startswith("http") or p.startswith("/"): return p
-    MEDIA_USED.add(p); return data_common.MEDIA_BASE + p
+    MEDIA_USED.add(p)
+    # large PNGs (ChatGPT renders) are converted to JPEG by the deploy workflow
+    if p in BIG_PNG and not data_common.MEDIA_BASE.startswith("http"): p = p[:-4] + ".jpg"
+    return data_common.MEDIA_BASE + p
 def url(lang, path=""):
     path = path.strip("/")
     base = "/ar/" if lang == "ar" else "/"
@@ -72,7 +77,9 @@ def org_schema():
          "url": DOMAIN + "/", "logo": DOMAIN + "/assets/fefco-solutions-logo.png", "image": img("2023/09/solar12-scaled.jpg"),
          "description": "FEFCO Solutions (FEFCO Electromechanical Services LLC) is a Dubai-based solar energy, water and electromechanical (MEP) contractor: rooftop solar PV, solar water heaters and repair, battery storage, EV chargers, water filtration, GRP tanks, plumbing, AMC maintenance and energy audits across the UAE.",
          "telephone": COMPANY["phone_main"], "email": COMPANY["email"],
-         "address": {"@type": "PostalAddress", "streetAddress": "Al Qusais Industrial Area 5", "addressLocality": "Dubai", "addressCountry": "AE"},
+         "address": {"@type": "PostalAddress", "streetAddress": "Deira Tower, 2307 Baniyas Road, Al Rigga", "addressLocality": "Deira, Dubai", "addressRegion": "Dubai", "addressCountry": "AE"},
+         "geo": {"@type": "GeoCoordinates", "latitude": COMPANY["geo"][0], "longitude": COMPANY["geo"][1]}, "hasMap": COMPANY["maps"],
+         "founder": {"@type": "Person", "name": "Mustafa Asgar Ali", "alternateName": "Mustafa Fefco", "jobTitle": "Founder"},
          "areaServed": [{"@type": "Country", "name": "United Arab Emirates"}, "Dubai", "Sharjah", "Abu Dhabi", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain"],
          "sameAs": [s[1] for s in SOCIAL if s[2] != "wa"],
          "subOrganization": {"@type": "Organization", "name": "FEFCO AI Solutions", "url": AI_SITE, "sameAs": [s[1] for s in SOCIAL_AI]},
@@ -234,7 +241,7 @@ HOME = {
         "h1": "Solar power, hot water and maintenance, handled by one team.",
         "lead": "FEFCO designs, installs and maintains rooftop solar, solar water heaters, battery storage, EV chargers, water systems and plumbing for homes and businesses across the UAE.",
         "trust": ["DEWA Shams Dubai process handled", "700+ clients served", "24-hour emergency line"],
-        "photo_cap": "FEFCO solar water heater installation, Dubai",
+        "photo_cap": "Rooftop solar and EV charging for Dubai villas",
         "calc_t": "Estimate your solar savings", "calc_s": "Move the slider to your average monthly DEWA bill.",
         "bill": "Monthly electricity bill", "types": [("villa", "Villa"), ("business", "Business"), ("factory", "Industrial")],
         "r1": "System size", "r2": "Estimated cost", "r3": "Estimated yearly savings", "r4": "Payback",
@@ -246,10 +253,10 @@ HOME = {
         "featured_k": "Most requested", "featured_h": "Popular services in Dubai",
         "proj_k": "Our work", "proj_h": "Real installations across the UAE", "proj_p": "Villas, factories, hotels and farms: a selection from FEFCO's project archive.",
         "proj_btn": "See more projects",
-        "lead_k": "Leadership", "lead_h": "Leadership that shows up on site",
-        "lead_p": "FEFCO is run hands-on. Our leadership is regularly on client sites and at industry events such as WETEX Dubai, demonstrating new technology to customers in person.",
+        "lead_k": "Founder", "lead_h": "Led by a founder who shows up on site",
+        "lead_p": "Mustafa Asgar Ali founded FEFCO and still runs it hands-on. He is regularly on client sites and at industry events such as WETEX Dubai, demonstrating new technology to customers in person.",
         "lead_pts": ["Demonstrates new technology to clients in person, from SuitX exoskeletons to solar-cleaning solutions", "Leads partnerships with Lamborghini Calorclima and Inspire Clean Energy (EIRA)", "Oversees FEFCO AI Solutions, the group's AI and digital division"],
-        "lead_tag": "FEFCO Solutions leadership", "lead_tag2": "Trialling SuitX exoskeletons before launch in the UAE",
+        "lead_tag": "Founder, FEFCO Solutions", "lead_tag2": "Trialling SuitX exoskeletons before launch in the UAE",
         "seg_k": "Who we work with", "seg_h": "From one villa to a whole portfolio",
         "segs": [("Homeowners", "Solar, hot water, EV charging and plumbing for villas and townhouses."), ("Businesses", "Offices, shops, restaurants and hotels that want lower running costs."), ("Industry", "Factories, warehouses and farms with big roofs and big loads."), ("Facility managers", "One accountable contractor for many systems and many sites.")],
         "faq_k": "Questions", "faq_h": "What customers ask us most",
@@ -262,7 +269,7 @@ HOME = {
         "h1": "الطاقة الشمسية والمياه الساخنة والصيانة، يتولاها فريق واحد.",
         "lead": "تصمم فيفكو وتركّب وتصون أنظمة الطاقة الشمسية على الأسطح وسخانات المياه الشمسية وتخزين الطاقة وشواحن السيارات الكهربائية وأنظمة المياه والسباكة للمنازل والشركات في جميع أنحاء الإمارات.",
         "trust": ["نتولى إجراءات شمس دبي", "أكثر من 700 عميل", "خط طوارئ على مدار 24 ساعة"],
-        "photo_cap": "تركيب سخان مياه شمسي من فيفكو، دبي",
+        "photo_cap": "طاقة شمسية وشحن سيارات كهربائية لفلل دبي",
         "calc_t": "احسب توفيرك من الطاقة الشمسية", "calc_s": "حرّك المؤشر إلى متوسط فاتورة ديوا الشهرية.",
         "bill": "فاتورة الكهرباء الشهرية", "types": [("villa", "فيلا"), ("business", "تجاري"), ("factory", "صناعي")],
         "r1": "حجم النظام", "r2": "التكلفة التقديرية", "r3": "التوفير السنوي التقديري", "r4": "مدة الاسترداد",
@@ -274,10 +281,10 @@ HOME = {
         "featured_k": "الأكثر طلباً", "featured_h": "خدمات شائعة في دبي",
         "proj_k": "أعمالنا", "proj_h": "تركيبات حقيقية في جميع أنحاء الإمارات", "proj_p": "فلل ومصانع وفنادق ومزارع: مختارات من أرشيف مشاريع فيفكو.",
         "proj_btn": "شاهد المزيد من المشاريع",
-        "lead_k": "القيادة", "lead_h": "قيادة حاضرة في الموقع",
-        "lead_p": "تُدار فيفكو بأسلوب عملي مباشر. تحضر قيادتنا باستمرار إلى مواقع العملاء والفعاليات المتخصصة مثل ويتكس دبي، وتعرض التقنيات الجديدة على العملاء بنفسها.",
-        "lead_pts": ["تعرض التقنيات الجديدة على العملاء بنفسها، من هياكل SuitX إلى حلول تنظيف الألواح الشمسية", "تقود الشراكات مع لامبورغيني كالوركليما وإنسباير كلين إنرجي (EIRA)", "تشرف على فيفكو للذكاء الاصطناعي، القسم الرقمي للمجموعة"],
-        "lead_tag": "قيادة فيفكو سوليوشنز", "lead_tag2": "تجربة هياكل SuitX قبل إطلاقها في الإمارات",
+        "lead_k": "المؤسس", "lead_h": "بقيادة مؤسس حاضر في الموقع",
+        "lead_p": "أسس مصطفى أصغر علي فيفكو وما زال يديرها بأسلوب عملي مباشر. يحضر باستمرار إلى مواقع العملاء والفعاليات المتخصصة مثل ويتكس دبي، ويعرض التقنيات الجديدة على العملاء بنفسه.",
+        "lead_pts": ["يعرض التقنيات الجديدة على العملاء بنفسه، من هياكل SuitX إلى حلول تنظيف الألواح الشمسية", "يقود الشراكات مع لامبورغيني كالوركليما وإنسباير كلين إنرجي (EIRA)", "يشرف على فيفكو للذكاء الاصطناعي، القسم الرقمي للمجموعة"],
+        "lead_tag": "المؤسس، فيفكو سوليوشنز", "lead_tag2": "تجربة هياكل SuitX قبل إطلاقها في الإمارات",
         "seg_k": "مع من نعمل", "seg_h": "من فيلا واحدة إلى محفظة عقارية كاملة",
         "segs": [("أصحاب المنازل", "الطاقة الشمسية والمياه الساخنة وشحن السيارات والسباكة للفلل والتاون هاوس."), ("الشركات", "المكاتب والمحلات والمطاعم والفنادق الراغبة في خفض تكاليف التشغيل."), ("الصناعة", "المصانع والمستودعات والمزارع ذات الأسطح الكبيرة والأحمال العالية."), ("مديرو المرافق", "مقاول واحد مسؤول عن أنظمة ومواقع متعددة.")],
         "faq_k": "أسئلة", "faq_h": "أكثر ما يسألنا عنه العملاء",
@@ -350,7 +357,7 @@ def page_home(lang):
 <div><span class="kicker">{h['kicker']}</span><h1>{h['h1']}</h1><p class="lead">{h['lead']}</p>
 <div class="ctas"><a class="btn btn-primary" href="#quote">{u['survey']} {I['arr']}</a><a class="btn btn-wa" href="{wa_link()}" rel="noopener">{I['wa']}{u['whatsapp']}</a></div>
 <div class="trust">{''.join(f'<span>{I["check"]}{t}</span>' for t in h['trust'])}</div></div>
-<div class="hero-visual"><figure class="hero-photo"><img src="{img('2024/05/installation2-1.jpeg')}" alt="{h['photo_cap']}" fetchpriority="high" width="1280" height="730"><figcaption>{h['photo_cap']}</figcaption></figure>
+<div class="hero-visual"><figure class="hero-photo"><img src="{img(GEN['villa'])}" alt="{h['photo_cap']}" fetchpriority="high" width="1672" height="941"><figcaption>{h['photo_cap']}</figcaption></figure>
 <div class="calc" aria-labelledby="calc-t"><h2 id="calc-t">{h['calc_t']}</h2><p class="sub">{h['calc_s']}</p>
 <div class="seg" role="group" aria-label="Property type">{types}</div>
 <label for="bill">{h['bill']} <output id="billOut" for="bill"></output></label>
@@ -368,13 +375,13 @@ def page_home(lang):
 <section class="band mint"><div class="wrap"><div class="sec-head"><span class="kicker">{u['process']}</span><h2>{'From first call to handover in four steps' if lang=='en' else 'من أول اتصال حتى التسليم في أربع خطوات'}</h2></div><div class="steps">{steps}</div></div></section>
 <section class="band"><div class="wrap"><div class="sec-head"><span class="kicker">{h['proj_k']}</span><h2>{h['proj_h']}</h2><p>{h['proj_p']}</p></div><div class="gallery">{gal}</div>
 <p style="margin-top:28px"><a class="btn btn-ghost" href="{url(lang,'projects')}">{h['proj_btn']} {I['arr']}</a></p></div></section>
-<section class="band sky"><div class="wrap leader"><figure><img src="{img(LEADER_IMG)}" alt="{E(name)}" loading="lazy"><div class="tag"><b>{E(name)}</b><span>{h['lead_tag2']}</span></div></figure>
+<section class="band sky"><div class="wrap leader"><figure><img src="{img(LEADER_IMG)}" alt="{E(name)}" loading="lazy"><div class="tag"><b>{E(name)}</b><span>{h['lead_tag']}</span></div></figure>
 <div><span class="kicker">{h['lead_k']}</span><h2>{h['lead_h']}</h2><p class="lead">{h['lead_p']}</p><ul class="pts">{pts}</ul><a class="btn btn-primary" href="{url(lang,'about')}">{u['about']} {I['arr']}</a></div></div></section>
 <section class="band"><div class="wrap"><div class="sec-head"><span class="kicker">{h['seg_k']}</span><h2>{h['seg_h']}</h2></div><div class="grid g4">{segs}</div></div></section>
 <section class="band sky"><div class="wrap"><div class="sec-head"><span class="kicker">{h['faq_k']}</span><h2>{h['faq_h']}</h2></div>{faq_block(lang, HOME_FAQ[lang])}</div></section>
 <section class="band"><div class="wrap"><div class="split" style="align-items:center"><div><span class="kicker">{h['social_k']}</span><h2>{h['social_h']}</h2><p class="lead">{h['social_p']}</p><div class="soc-links">{soc_links}</div></div><div class="social-grid" style="grid-template-columns:repeat(3,1fr)">{soc_tiles}</div></div></div></section>
 {cta_band(lang)}'''
-    out = head(lang, h["t"], h["d"], "", "2024/05/installation2-1.jpeg", [faq_ld(HOME_FAQ[lang])]) + header(lang, "") + body + footer(lang)
+    out = head(lang, h["t"], h["d"], "", GEN["villa"], [faq_ld(HOME_FAQ[lang])]) + header(lang, "") + body + footer(lang)
     write(lang, "", out)
 
 def page_service(lang, s):
@@ -472,20 +479,20 @@ def page_about(lang):
     inner = f'''<section class="band"><div class="wrap split" style="align-items:center"><div class="prose"><span class="kicker">{'Our story' if lang=='en' else 'قصتنا'}</span><h2>{'Solar, water and MEP under one roof' if lang=='en' else 'الطاقة الشمسية والمياه والأعمال الكهروميكانيكية تحت سقف واحد'}</h2><p>{story}</p>{ai}</div>
 <div class="gallery" style="grid-template-columns:1fr 1fr;grid-auto-rows:200px"><figure class="w2"><img src="{img('2023/09/20210621_171528.jpg')}" alt="FEFCO office" loading="lazy"></figure><figure><img src="{img('2024/05/repair1.jpeg')}" alt="" loading="lazy"></figure><figure><img src="{img('2023/09/solar11-scaled.jpg')}" alt="" loading="lazy"></figure></div></div></section>
 <section class="band tight sky"><div class="wrap facts">{facts}</div></section>
-<section class="band"><div class="wrap leader"><figure><img src="{img('2023/09/PHOTO-2023-09-16-22-28-34.jpg')}" alt="{E(name)}" loading="lazy"><div class="tag"><b>{E(name)}</b><span>{h['lead_tag2']}</span></div></figure>
+<section class="band"><div class="wrap leader"><figure><img src="{img('2023/09/PHOTO-2023-09-16-22-28-34.jpg')}" alt="{E(name)}" loading="lazy"><div class="tag"><b>{E(name)}</b><span>{h['lead_tag']}</span></div></figure>
 <div><span class="kicker">{h['lead_k']}</span><h2>{h['lead_h']}</h2><p class="lead">{h['lead_p']}</p><ul class="pts">{pts}</ul></div></div></section>
 <section class="band mint"><div class="wrap"><div class="sec-head"><span class="kicker">{'How we work' if lang=='en' else 'قيمنا'}</span><h2>{'What we stand for' if lang=='en' else 'ما نؤمن به'}</h2></div><div class="grid g3">{vcards}</div></div></section>'''
     simple_page(lang, "about", title, desc, "FEFCO Solutions" if lang == "en" else "فيفكو سوليوشنز", h1, lead, inner, "about")
 
 def page_contact(lang):
     u = UI[lang]
-    map_q = "https://www.google.com/maps?q=Al+Qusais+Industrial+Area+5,+Dubai&output=embed"
+    map_q = "https://www.google.com/maps?q=%s,%s&z=16&output=embed" % COMPANY["geo"]
     soc = "".join(f'<a class="soc" href="{s[1]}" rel="noopener" target="_blank">{SOC_ICON[s[2]]}{s[0]}</a>' for s in SOCIAL)
     cards = f'''<div class="grid g4">
 <a class="card" href="tel:{COMPANY['phone_main']}"><div class="ic">{I['phone']}</div><h3>{u['call']}</h3><p dir="ltr">{COMPANY['phone_main_disp']}<br>{COMPANY['phone_2_disp']}</p></a>
 <a class="card" href="{wa_link()}" rel="noopener"><div class="ic">{I['wa']}</div><h3>WhatsApp</h3><p dir="ltr">{COMPANY['phone_main_disp']}</p></a>
 <a class="card" href="mailto:{COMPANY['email']}"><div class="ic">{I['mail']}</div><h3>{'Email' if lang=='en' else 'البريد الإلكتروني'}</h3><p>{COMPANY['email']}<br>{COMPANY['email_solar']}</p></a>
-<div class="card"><div class="ic">{I['pin']}</div><h3>{'Office' if lang=='en' else 'المكتب'}</h3><p>{COMPANY['address_'+lang]}</p></div></div>
+<a class="card" href="{COMPANY['maps']}" rel="noopener" target="_blank"><div class="ic">{I['pin']}</div><h3>{'Office' if lang=='en' else 'المكتب'}</h3><p>{COMPANY['address_'+lang]}</p></a></div>
 <div class="soc-links" style="margin-top:26px">{soc}</div>
 <div style="margin-top:34px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line)"><iframe title="FEFCO location" src="{map_q}" width="100%" height="380" style="border:0;display:block" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>'''
     inner = f'<section class="band"><div class="wrap">{cards}</div></section>'

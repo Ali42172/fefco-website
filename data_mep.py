@@ -92,7 +92,7 @@ MEP = [
 },
 {
  "slug": "energy-audit-dubai", "cat": "mep", "proc": "amc",
- "img": "2023/09/IMG_20201226_161249-1-scaled.jpg", "gallery": ["2023/09/solar76.jpeg"],
+ "img": "2026/11/image-3.png", "gallery": ["2023/09/IMG_20201226_161249-1-scaled.jpg", "2023/09/solar76.jpeg"],
  "old": [],
  "en": {
   "nav": "Energy audits",

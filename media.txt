@@ -21,7 +21,6 @@
 2023/09/PHOTO-2023-09-16-22-41-52-2.jpg
 2023/09/ac.jpeg
 2023/09/ac2.jpeg
-2023/09/aro.png
 2023/09/businessman-working-on-tablet-using-ai-business-technology-iot-internet-of-things-ai-concept.jpg
 2023/09/chiller.jpg
 2023/09/chiller.png
@@ -29,7 +28,6 @@
 2023/09/dayl.jpg
 2023/09/dayl1.jpg
 2023/09/daylight.jpg
-2023/09/ev.jpg
 2023/09/ev1.jpg
 2023/09/filter.jpg
 2023/09/filter2.jpg
@@ -71,3 +69,9 @@
 2026/01/28.jpg
 2026/01/5.jpg
 2026/01/7.jpg
+2026/11/image-1.png
+2026/11/image-2.png
+2026/11/image-3.png
+2026/11/image-4.png
+2026/11/image-5.png
+2026/11/image.png

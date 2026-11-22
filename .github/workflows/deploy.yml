@@ -39,6 +39,8 @@ jobs:
           for r,_,fs in os.walk('dist/assets/media'):
               for f in fs:
                   p=os.path.join(r,f)
+                  if f.lower().endswith('.png') and os.path.getsize(p)>1_000_000:
+                      im=Image.open(p).convert('RGB'); im.thumbnail((1800,1800)); im.save(p[:-4]+'.jpg',quality=84,optimize=True,progressive=True); continue
                   if f.lower().endswith(('.jpg','.jpeg')):
                       try:
                           im=Image.open(p); im.thumbnail((1800,1800)); im.convert('RGB').save(p,quality=82,optimize=True,progressive=True)

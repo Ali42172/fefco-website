@@ -137,7 +137,7 @@ SOLAR = [
 },
 {
  "slug": "solar-panel-cleaning-maintenance-dubai", "cat": "solar", "proc": "amc",
- "img": "2023/09/PHOTO-2023-09-16-22-41-51.jpg", "gallery": ["2023/09/PHOTO-2023-09-16-22-41-51-2.jpg", "2023/09/PHOTO-2023-09-16-22-41-52-2.jpg", "2023/09/solar11-scaled.jpg"],
+ "img": "2026/11/image-2.png", "gallery": ["2023/09/PHOTO-2023-09-16-22-41-51.jpg", "2023/09/PHOTO-2023-09-16-22-41-51-2.jpg", "2023/09/PHOTO-2023-09-16-22-41-52-2.jpg", "2023/09/solar11-scaled.jpg"],
  "old": [],
  "en": {
   "nav": "Solar cleaning & maintenance",
@@ -227,7 +227,7 @@ SOLAR = [
 },
 {
  "slug": "ev-charger-installation-dubai", "cat": "solar", "proc": "install",
- "img": "2023/09/ev1.jpg", "gallery": ["2023/09/ev.jpg", "2023/09/wallbox_pulsar_plus_wall_white.1000x600.png", "2023/09/solarparking.jpeg"],
+ "img": "2026/11/image.png", "gallery": ["2023/09/ev1.jpg", "2023/09/wallbox_pulsar_plus_wall_white.1000x600.png", "2023/09/solarparking.jpeg"],
  "old": [],
  "en": {
   "nav": "EV charger installation",
@@ -272,7 +272,7 @@ SOLAR = [
 },
 {
  "slug": "solar-carport-parking-shades", "cat": "solar", "proc": "install",
- "img": "2023/09/solarparking.jpeg", "gallery": ["2023/09/solarparking2.jpeg", "2023/09/IMG_20200919_112437.jpg", "2023/09/parking1.jpg"],
+ "img": "2026/11/image-1.png", "gallery": ["2023/09/solarparking.jpeg", "2023/09/solarparking2.jpeg", "2023/09/IMG_20200919_112437.jpg", "2023/09/parking1.jpg"],
  "old": [],
  "en": {
   "nav": "Solar carports",
@@ -362,7 +362,7 @@ SOLAR = [
 },
 {
  "slug": "solar-air-conditioners-uae", "cat": "solar", "proc": "supply",
- "img": "2023/09/ac2.jpeg", "gallery": ["2023/09/ac.jpeg"],
+ "img": "2026/11/image-5.png", "gallery": ["2023/09/ac2.jpeg", "2023/09/ac.jpeg"],
  "old": ["/solar-air-conditioners/"],
  "en": {
   "nav": "Solar air conditioners",

@@ -47,7 +47,7 @@ WATER = [
 },
 {
  "slug": "water-filtration-treatment-dubai", "cat": "water", "proc": "install",
- "img": "2023/09/filter.jpg", "gallery": ["2023/09/filter2.jpg", "2023/09/ro.jpg", "2023/09/aro.png"],
+ "img": "2026/11/image-4.png", "gallery": ["2023/09/filter.jpg", "2023/09/filter2.jpg", "2023/09/ro.jpg", "2023/09/aro.png"],
  "old": ["/water-filtration/"],
  "en": {
   "nav": "Water filtration & RO",
@@ -182,7 +182,7 @@ WATER = [
 },
 {
  "slug": "plumbing-services-dubai", "cat": "mep", "proc": "service",
- "img": "2023/09/IMG-20190723-WA0011.jpg", "gallery": ["2023/09/IMG-20190318-WA0013.jpg", "2024/05/repair1.jpeg"],
+ "img": "2026/11/image-4.png", "gallery": ["2023/09/IMG-20190723-WA0011.jpg", "2023/09/IMG-20190318-WA0013.jpg", "2024/05/repair1.jpeg"],
  "old": [],
  "en": {
   "nav": "Plumbing services",
