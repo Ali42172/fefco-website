@@ -20,7 +20,7 @@ jobs:
         run: |
           if [ -f static/CNAME ]; then BP=""; else BP="/${GITHUB_REPOSITORY#*/}"; fi
           echo "BASE_PATH=$BP"
-          BASE_PATH="$BP" MEDIA_BASE="$BP/assets/media/" python build.py
+          BASE_PATH="$BP" MEDIA_BASE="/assets/media/" python build.py
       - name: Copy photos from the WordPress media library
         run: |
           mkdir -p dist/assets/media

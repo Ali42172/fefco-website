@@ -26,6 +26,10 @@ def img(p):
     # large PNGs (ChatGPT renders) are converted to JPEG by the deploy workflow
     if p in BIG_PNG and not data_common.MEDIA_BASE.startswith("http"): p = p[:-4] + ".jpg"
     return data_common.MEDIA_BASE + p
+def abs_img(p):
+    u = img(p)
+    return u if u.startswith('http') else DOMAIN + u
+
 def url(lang, path=""):
     path = path.strip("/")
     base = "/ar/" if lang == "ar" else "/"
@@ -74,7 +78,7 @@ def org_schema():
       "@graph": [
         {"@type": ["Organization", "LocalBusiness", "HomeAndConstructionBusiness"], "@id": DOMAIN + "/#org",
          "name": COMPANY["brand"], "legalName": COMPANY["legal"], "alternateName": ["FEFCO", "فيفكو", "FEFCO Electromechanical Services", "fefco.ae"],
-         "url": DOMAIN + "/", "logo": DOMAIN + "/assets/fefco-solutions-logo.png", "image": img("2023/09/solar12-scaled.jpg"),
+         "url": DOMAIN + "/", "logo": DOMAIN + "/assets/fefco-solutions-logo.png", "image": abs_img("2023/09/solar12-scaled.jpg"),
          "description": "FEFCO Solutions (FEFCO Electromechanical Services LLC) is a Dubai-based solar energy, water and electromechanical (MEP) contractor: rooftop solar PV, solar water heaters and repair, battery storage, EV chargers, water filtration, GRP tanks, plumbing, AMC maintenance and energy audits across the UAE.",
          "telephone": COMPANY["phone_main"], "email": COMPANY["email"],
          "address": {"@type": "PostalAddress", "streetAddress": "Deira Tower, 2307 Baniyas Road, Al Rigga", "addressLocality": "Deira, Dubai", "addressRegion": "Dubai", "addressCountry": "AE"},
@@ -107,7 +111,7 @@ def head(lang, title, desc, path, image=None, extra_ld=None):
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website"><meta property="og:site_name" content="FEFCO Solutions">
 <meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}">
-<meta property="og:url" content="{absu(lang, path)}"><meta property="og:image" content="{E(img(image or '2023/09/solar12-scaled.jpg'))}">
+<meta property="og:url" content="{absu(lang, path)}"><meta property="og:image" content="{E(abs_img(image or '2023/09/solar12-scaled.jpg'))}">
 <meta property="og:locale" content="{'ar_AE' if lang=='ar' else 'en_AE'}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#2A429E">
@@ -396,7 +400,7 @@ def page_service(lang, s):
     rel = "".join(svc_card(lang, x) for x in related)
     glance = ("<b>At a glance:</b> " if lang == "en" else "<b>باختصار:</b> ") + E(c["lead"]) + (" Areas served: Dubai, Sharjah, Abu Dhabi and all emirates. Contact: " if lang == "en" else " نخدم دبي والشارقة وأبوظبي وجميع الإمارات. للتواصل: ") + f'<a href="tel:{COMPANY["phone_main"]}" dir="ltr">{COMPANY["phone_main_disp"]}</a>.'
     svc_ld = {"@context": "https://schema.org", "@type": "Service", "name": c["h1"], "serviceType": c["nav"], "description": c["d"], "url": absu(lang, path),
-              "provider": {"@id": DOMAIN + "/#org"}, "areaServed": {"@type": "Country", "name": "United Arab Emirates"}, "image": img(s["img"]),
+              "provider": {"@id": DOMAIN + "/#org"}, "areaServed": {"@type": "Country", "name": "United Arab Emirates"}, "image": abs_img(s["img"]),
               "availableChannel": {"@type": "ServiceChannel", "servicePhone": COMPANY["phone_main"], "serviceUrl": absu(lang, path)}, "inLanguage": lang, "dateModified": TODAY}
     bc = crumbs_ld(lang, [(u["breadcrumb_home"], url(lang)), (u["services"], url(lang, "services")), (c["nav"], url(lang, path))])
     body = f'''<section class="svc-hero"><div class="wrap"><div>
