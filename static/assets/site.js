@@ -80,3 +80,19 @@
     if(a && window.dataLayer) window.dataLayer.push({event: a.href.indexOf('tel:')===0?'click_call':'click_whatsapp'});
   });
 })();
+(function(){
+  var v=document.querySelector('.vbg'), b=document.querySelector('.vpause');
+  if(v){
+    var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(rm){ try{v.pause();}catch(e){} }
+    if(b) b.addEventListener('click',function(){ if(v.paused){v.play();b.setAttribute('aria-pressed','false');} else {v.pause();b.setAttribute('aria-pressed','true');} });
+    // pause when off-screen to save battery/data
+    if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){ if(rm) return; if(e.isIntersecting){ if(b&&b.getAttribute('aria-pressed')==='true') return; v.play().catch(function(){}); } else v.pause(); }); }).observe(v); }
+  }
+  // count-up stats
+  var nums=document.querySelectorAll('[data-count]');
+  if(nums.length && !(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){
+    nums.forEach(function(el){ var t=+el.dataset.count, s=null, dur=1400; el.textContent='0';
+      setTimeout(function(){ requestAnimationFrame(function step(ts){ if(!s) s=ts; var p=Math.min(1,(ts-s)/dur); el.textContent=Math.round(t*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step); }); }, 900); });
+  }
+})();

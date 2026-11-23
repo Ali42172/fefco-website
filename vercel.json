@@ -8,7 +8,17 @@
    "permanent": true
   },
   {
+   "source": "/solar-pv-systems/",
+   "destination": "/solar-panel-installation-dubai/",
+   "permanent": true
+  },
+  {
    "source": "/solar-water-heating",
+   "destination": "/solar-water-heater-dubai/",
+   "permanent": true
+  },
+  {
+   "source": "/solar-water-heating/",
    "destination": "/solar-water-heater-dubai/",
    "permanent": true
   },
@@ -18,7 +28,17 @@
    "permanent": true
   },
   {
+   "source": "/solar-water-heater-maintenance-dubai/",
+   "destination": "/solar-water-heater-repair-maintenance-dubai/",
+   "permanent": true
+  },
+  {
    "source": "/go-green-solar-flood-light",
+   "destination": "/solar-street-flood-lights/",
+   "permanent": true
+  },
+  {
+   "source": "/go-green-solar-flood-light/",
    "destination": "/solar-street-flood-lights/",
    "permanent": true
   },
@@ -28,7 +48,17 @@
    "permanent": true
   },
   {
+   "source": "/solar-flood-light-ggfl/",
+   "destination": "/solar-street-flood-lights/",
+   "permanent": true
+  },
+  {
    "source": "/mini-king-light-1-0",
+   "destination": "/solar-street-flood-lights/",
+   "permanent": true
+  },
+  {
+   "source": "/mini-king-light-1-0/",
    "destination": "/solar-street-flood-lights/",
    "permanent": true
   },
@@ -38,7 +68,17 @@
    "permanent": true
   },
   {
+   "source": "/all-in-one-integrated-solar-street-light/",
+   "destination": "/solar-street-flood-lights/",
+   "permanent": true
+  },
+  {
    "source": "/all-in-one-integrated-solar-street-light-140w",
+   "destination": "/solar-street-flood-lights/",
+   "permanent": true
+  },
+  {
+   "source": "/all-in-one-integrated-solar-street-light-140w/",
    "destination": "/solar-street-flood-lights/",
    "permanent": true
   },
@@ -48,7 +88,17 @@
    "permanent": true
   },
   {
+   "source": "/solar-air-conditioners/",
+   "destination": "/solar-air-conditioners-uae/",
+   "permanent": true
+  },
+  {
    "source": "/water-filtration",
+   "destination": "/water-filtration-treatment-dubai/",
+   "permanent": true
+  },
+  {
+   "source": "/water-filtration/",
    "destination": "/water-filtration-treatment-dubai/",
    "permanent": true
   },
@@ -58,7 +108,17 @@
    "permanent": true
   },
   {
+   "source": "/water-chiller/",
+   "destination": "/water-chillers-uae/",
+   "permanent": true
+  },
+  {
    "source": "/day-lighting-system",
+   "destination": "/daylighting-ventilation-air-curtains/",
+   "permanent": true
+  },
+  {
+   "source": "/day-lighting-system/",
    "destination": "/daylighting-ventilation-air-curtains/",
    "permanent": true
   },
@@ -68,7 +128,17 @@
    "permanent": true
   },
   {
+   "source": "/solar-cctv-camera/",
+   "destination": "/solar-cctv-cameras-uae/",
+   "permanent": true
+  },
+  {
    "source": "/suitx-solutions",
+   "destination": "/suitx-exoskeletons-uae/",
+   "permanent": true
+  },
+  {
+   "source": "/suitx-solutions/",
    "destination": "/suitx-exoskeletons-uae/",
    "permanent": true
   },
@@ -78,7 +148,17 @@
    "permanent": true
   },
   {
+   "source": "/solar-energy-storage-systempps-4kwh/",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
    "source": "/solar-energy-storage-systempps-2kwh",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
+   "source": "/solar-energy-storage-systempps-2kwh/",
    "destination": "/products/",
    "permanent": true
   },
@@ -88,7 +168,17 @@
    "permanent": true
   },
   {
+   "source": "/solar-energy-storage-systemes-1000/",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
    "source": "/solar-energy-storage-systemes-500",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
+   "source": "/solar-energy-storage-systemes-500/",
    "destination": "/products/",
    "permanent": true
   },
@@ -98,7 +188,17 @@
    "permanent": true
   },
   {
+   "source": "/solar-power-systemcpes-150/",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
    "source": "/70-kwhair-cooled-distributed",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
+   "source": "/70-kwhair-cooled-distributed/",
    "destination": "/products/",
    "permanent": true
   },
@@ -108,7 +208,17 @@
    "permanent": true
   },
   {
+   "source": "/ggsp-610-650w610-650w/",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
    "source": "/gg-spi-series-solar-pump-inverter",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
+   "source": "/gg-spi-series-solar-pump-inverter/",
    "destination": "/products/",
    "permanent": true
   },
@@ -118,7 +228,17 @@
    "permanent": true
   },
   {
+   "source": "/25-6v-100ah-lifepo4-battery/",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
    "source": "/51-2v-314ah-lifepo4-battery",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
+   "source": "/51-2v-314ah-lifepo4-battery/",
    "destination": "/products/",
    "permanent": true
   },
@@ -128,7 +248,17 @@
    "permanent": true
   },
   {
+   "source": "/12-8v-200ah-lifepo4-battery/",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
    "source": "/12-8v-100ah-lifepo4-battery",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
+   "source": "/12-8v-100ah-lifepo4-battery/",
    "destination": "/products/",
    "permanent": true
   },
@@ -138,7 +268,17 @@
    "permanent": true
   },
   {
+   "source": "/12-8v-300ahlifepo4/",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
    "source": "/51-2v-628ah-lifepo4-battery",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
+   "source": "/51-2v-628ah-lifepo4-battery/",
    "destination": "/products/",
    "permanent": true
   },
@@ -148,7 +288,17 @@
    "permanent": true
   },
   {
+   "source": "/51-2v-200ah-lifepo4-battery/",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
    "source": "/6-0-kwh-lifepo4-battery",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
+   "source": "/6-0-kwh-lifepo4-battery/",
    "destination": "/products/",
    "permanent": true
   },
@@ -158,7 +308,17 @@
    "permanent": true
   },
   {
+   "source": "/12-8v-120ah-lifepo4-battery/",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
    "source": "/25-6v-200ahlifepo4-battery",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
+   "source": "/25-6v-200ahlifepo4-battery/",
    "destination": "/products/",
    "permanent": true
   },
@@ -168,7 +328,17 @@
    "permanent": true
   },
   {
+   "source": "/25-6v-200ah-stackablelifepo4/",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
    "source": "/ggiv-3p-14kw",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
+   "source": "/ggiv-3p-14kw/",
    "destination": "/products/",
    "permanent": true
   },
@@ -178,7 +348,17 @@
    "permanent": true
   },
   {
+   "source": "/ggiv-1p-series/",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
    "source": "/ggiv-6kw",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
+   "source": "/ggiv-6kw/",
    "destination": "/products/",
    "permanent": true
   },
@@ -188,7 +368,17 @@
    "permanent": true
   },
   {
+   "source": "/24v-5000w-hybrid-lnverter-single-phase/",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
    "source": "/ggiv-2kw",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
+   "source": "/ggiv-2kw/",
    "destination": "/products/",
    "permanent": true
   },
@@ -198,7 +388,17 @@
    "permanent": true
   },
   {
+   "source": "/dc-solar-cable/",
+   "destination": "/products/",
+   "permanent": true
+  },
+  {
    "source": "/contact-us",
+   "destination": "/contact/",
+   "permanent": true
+  },
+  {
+   "source": "/contact-us/",
    "destination": "/contact/",
    "permanent": true
   },
@@ -208,7 +408,17 @@
    "permanent": true
   },
   {
+   "source": "/portfolio/",
+   "destination": "/projects/",
+   "permanent": true
+  },
+  {
    "source": "/home",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/home/",
    "destination": "/",
    "permanent": true
   },
@@ -218,7 +428,22 @@
    "permanent": true
   },
   {
+   "source": "/login/",
+   "destination": "https://fefco.ae/",
+   "permanent": true
+  },
+  {
+   "source": "/wp-admin/:path*",
+   "destination": "/",
+   "permanent": true
+  },
+  {
    "source": "/hello-world",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/hello-world/",
    "destination": "/",
    "permanent": true
   }

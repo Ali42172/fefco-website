@@ -121,7 +121,7 @@ def head(lang, title, desc, path, image=None, extra_ld=None):
 <meta name="theme-color" content="#2A429E">
 <link rel="icon" href="/assets/favicon.png">
 {FONTS}
-<link rel="stylesheet" href="/assets/site.css?v={V_CSS}">
+<link rel="stylesheet" href="/assets/site.css?v={V_CSS}">{'<link rel="preload" as="image" href="/assets/video/hero-poster.jpg">' if path=="" else ''}
 {''.join('<script type="application/ld+json">'+json.dumps(x, ensure_ascii=False)+'</script>' for x in ld)}
 </head>
 <body>
@@ -246,7 +246,7 @@ HOME = {
  "en": {"t": "FEFCO Solutions | Solar Panels, Solar Water Heaters, EV Chargers & MEP Maintenance in Dubai, UAE",
         "d": "FEFCO Solutions is a Dubai solar, water and electromechanical company: rooftop solar PV (DEWA Shams Dubai), solar water heater supply and repair, battery storage, EV chargers, water filtration, plumbing and AMC across the UAE.",
         "kicker": "Solar, water and MEP contractor in Dubai",
-        "h1": "Solar power, hot water and maintenance, handled by one team.",
+        "h1": "Solar power, hot water and maintenance, handled by one team.", "h1_lines": ["Solar power, hot water", "and maintenance,", "handled by one team."],
         "lead": "FEFCO designs, installs and maintains rooftop solar, solar water heaters, battery storage, EV chargers, water systems and plumbing for homes and businesses across the UAE.",
         "trust": ["DEWA Shams Dubai process handled", "700+ clients served", "24-hour emergency line"],
         "photo_cap": "Rooftop solar and EV charging for Dubai villas",
@@ -274,7 +274,7 @@ HOME = {
  "ar": {"t": "فيفكو سوليوشنز | الألواح الشمسية وسخانات المياه الشمسية وشواحن السيارات والصيانة في دبي والإمارات",
         "d": "فيفكو سوليوشنز شركة للطاقة الشمسية والمياه والأعمال الكهروميكانيكية في دبي: الطاقة الشمسية على الأسطح (شمس دبي)، وتوريد سخانات المياه الشمسية وإصلاحها، وتخزين الطاقة، وشواحن السيارات الكهربائية، وفلترة المياه، والسباكة، وعقود الصيانة في جميع أنحاء الإمارات.",
         "kicker": "مقاول طاقة شمسية ومياه وأعمال كهروميكانيكية في دبي",
-        "h1": "الطاقة الشمسية والمياه الساخنة والصيانة، يتولاها فريق واحد.",
+        "h1": "الطاقة الشمسية والمياه الساخنة والصيانة، يتولاها فريق واحد.", "h1_lines": ["الطاقة الشمسية والمياه الساخنة", "والصيانة،", "يتولاها فريق واحد."],
         "lead": "تصمم فيفكو وتركّب وتصون أنظمة الطاقة الشمسية على الأسطح وسخانات المياه الشمسية وتخزين الطاقة وشواحن السيارات الكهربائية وأنظمة المياه والسباكة للمنازل والشركات في جميع أنحاء الإمارات.",
         "trust": ["نتولى إجراءات شمس دبي", "أكثر من 700 عميل", "خط طوارئ على مدار 24 ساعة"],
         "photo_cap": "طاقة شمسية وشحن سيارات كهربائية لفلل دبي",
@@ -384,13 +384,31 @@ def page_home(lang):
     soc_tiles = "".join(f'<a href="{SOCIAL[0][1]}" rel="noopener" target="_blank" aria-label="Instagram"><img src="{img(p)}" alt="" loading="lazy"></a>' for p in ["2024/05/installation2-1.jpeg", "2023/09/solarparking.jpeg", "2023/09/PHOTO-2023-09-16-22-41-51-2.jpg", "2023/09/IMG_20191223_181707-scaled.jpg", "2024/05/repair1.jpeg", "2023/09/solar11-scaled.jpg"])
     soc_links = "".join(f'<a class="soc" href="{s[1]}" rel="noopener" target="_blank">{SOC_ICON[s[2]]}{s[0]}</a>' for s in SOCIAL)
     name = LEADER_NAME[lang] if LEADER_NAME else h["lead_tag"]
-    body = f'''<section class="hero"><div class="wrap">
-<div><span class="kicker">{h['kicker']}</span><h1>{h['h1']}</h1><p class="lead">{h['lead']}</p>
-<div class="ctas"><a class="btn btn-primary" href="#quote">{u['survey']} {I['arr']}</a><a class="btn btn-wa" href="{wa_link()}" rel="noopener">{I['wa']}{u['whatsapp']}</a></div>
-<div class="trust">{''.join(f'<span>{I["check"]}{t}</span>' for t in h['trust'])}</div></div>
-<div class="hero-visual"><figure class="hero-photo"><img src="{img(GEN['villa'])}" alt="{h['photo_cap']}" fetchpriority="high" width="1672" height="941"><figcaption>{h['photo_cap']}</figcaption></figure></div></div>
-</div></section>
-<div class="chips-band"><p>{h['brands']}</p><div class="marquee" aria-hidden="false">{chips}</div></div>
+    stats = [("700", "+", "clients across the UAE" if lang=="en" else "عميل في الإمارات"), ("24", "h", "emergency response" if lang=="en" else "استجابة للطوارئ"), ("21", "", "solar, water & MEP services" if lang=="en" else "خدمة طاقة ومياه وكهروميكانيك"), ("7", "", "emirates covered" if lang=="en" else "إمارات نغطيها")]
+    stat_html = "".join(f'<div class="vstat" style="--d:{0.9+i*0.12:.2f}s"><b><span data-count="{n}">{n}</span>{suf}</b><small>{lbl}</small></div>' for i, (n, suf, lbl) in enumerate(stats))
+    ticker = "".join(f'<span>{E(BY_SLUG[x][lang]["nav"])}</span>' for x in ["solar-panel-installation-dubai", "solar-water-heater-dubai", "solar-water-heater-repair-maintenance-dubai", "ev-charger-installation-dubai", "solar-battery-storage-dubai", "solar-panel-cleaning-maintenance-dubai", "amc-annual-maintenance-contract-dubai", "plumbing-services-dubai", "water-filtration-treatment-dubai", "solar-carport-parking-shades"]) * 2
+    h1_lines = h['h1_lines']
+    h1_html = "".join(f'<span class="ln" style="--d:{0.15+i*0.14:.2f}s"><span>{E(t)}</span></span>' for i, t in enumerate(h1_lines))
+    body = f'''<section class="vhero" aria-label="{E(h['kicker'])}">
+<video class="vbg" autoplay muted loop playsinline preload="metadata" poster="/assets/video/hero-poster.jpg" aria-hidden="true">
+<source src="/assets/video/hero-720.mp4" type="video/mp4" media="(max-width: 820px)"><source src="/assets/video/hero-1080.mp4" type="video/mp4"></video>
+<div class="vshade"></div>
+<div class="wrap vgrid">
+<div class="vcopy"><span class="vkicker"><i class="pulse"></i>{h['kicker']}</span>
+<h1 class="vh1">{h1_html}</h1>
+<p class="vlead">{h['lead']}</p>
+<div class="vctas"><a class="btn btn-primary" href="#quote">{u['survey']} {I['arr']}</a><a class="btn btn-glass" href="{wa_link()}" rel="noopener">{I['wa']}{u['whatsapp']}</a></div>
+<div class="vtrust">{''.join(f'<span>{I["check"]}{t}</span>' for t in h['trust'])}</div></div>
+<div class="vcards"><div class="vcard c1"><span class="ic">{I['sun']}</span><div><b>{'DEWA Shams Dubai' if lang=='en' else 'شمس دبي – ديوا'}</b><small>{'Net-metering approvals handled' if lang=='en' else 'نتولى موافقات صافي القياس'}</small></div></div>
+<div class="vcard c2"><span class="ic">{I['bolt']}</span><div><b>{'Free site survey' if lang=='en' else 'معاينة مجانية'}</b><small>{'Slot confirmed within 24 hours' if lang=='en' else 'تأكيد الموعد خلال 24 ساعة'}</small></div></div></div>
+</div>
+<div class="wrap vstats">{stat_html}</div>
+<div class="vticker" aria-hidden="true"><div class="vtrack">{ticker}</div></div>
+<button class="vpause" type="button" aria-label="{'Pause background video' if lang=='en' else 'إيقاف الفيديو'}" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+<a class="vscroll" href="#explore" aria-label="{'Scroll to services' if lang=='en' else 'انتقل إلى الخدمات'}"><span></span></a>
+</section>
+'''
+    body += f'''<div class="chips-band"><p>{h['brands']}</p><div class="marquee" aria-hidden="false">{chips}</div></div>
 <section class="band sun calc-band"><div class="wrap"><div><span class="kicker">{'Solar savings estimator' if lang=='en' else 'حاسبة التوفير'}</span><h2>{'What would rooftop solar save you?' if lang=='en' else 'كم ستوفر لك الطاقة الشمسية على سطحك؟'}</h2><p class="lead">{'Pick your property type and slide to your average monthly DEWA bill. You get an instant estimate; our free site survey gives the exact figure.' if lang=='en' else 'اختر نوع العقار وحرّك المؤشر إلى متوسط فاتورة ديوا الشهرية. تحصل على تقدير فوري، وتعطيك المعاينة المجانية الرقم الدقيق.'}</p></div>
 <div class="calc" aria-labelledby="calc-t"><h2 id="calc-t">{h['calc_t']}</h2><p class="sub">{h['calc_s']}</p>
 <div class="seg" role="group" aria-label="Property type">{types}</div>
@@ -399,7 +417,7 @@ def page_home(lang):
 <div class="res"><div class="big"><small>{h['r3']}</small><b id="rSave"></b></div><div><small>{h['r1']}</small><b id="rSize"></b></div><div><small>{h['r4']}</small><b id="rPay"></b></div><div style="grid-column:1/-1"><small>{h['r2']}</small><b id="rCost"></b></div></div>
 <a class="btn btn-wa" href="{wa_link()}" rel="noopener">{I['wa']}{h['calc_btn']}</a>
 <p class="note">{h['calc_note']}</p></div></section>
-<section class="band"><div class="wrap"><div class="sec-head"><span class="kicker">{h['explore_k']}</span><h2>{h['explore_h']}</h2><p>{h['explore_p']}</p></div>
+<section class="band" id="explore"><div class="wrap"><div class="sec-head"><span class="kicker">{h['explore_k']}</span><h2>{h['explore_h']}</h2><p>{h['explore_p']}</p></div>
 <div class="explorer"><div class="tabs" role="tablist" aria-orientation="vertical">{tabs}</div><div>{panels}</div></div></div></section>
 <section class="band sky"><div class="wrap"><div class="sec-head"><span class="kicker">{h['featured_k']}</span><h2>{h['featured_h']}</h2></div><div class="grid g3">{featured}</div>
 <p style="margin-top:30px"><a class="btn btn-ghost" href="{url(lang,'services')}">{u['all_services']} {I['arr']}</a></p></div></section>
@@ -588,7 +606,13 @@ def seo_files():
         seen.add(a); lines.append(f"{a} {b} 301")
         if a.endswith("/") and "*" not in a: lines.append(f"{a.rstrip('/')} {b} 301")
     open(os.path.join(OUT, "_redirects"), "w").write("\n".join(lines) + "\n")
-    vercel = {"cleanUrls": False, "trailingSlash": True, "redirects": [{"source": a.rstrip("/") or "/", "destination": b, "permanent": True} for a, b in red if "*" not in a],
+    vr = []
+    for a, b in red:
+        if "*" in a: vr.append({"source": a.replace("/*", "/:path*"), "destination": b, "permanent": True}); continue
+        base = a.rstrip("/") or "/"
+        vr.append({"source": base, "destination": b, "permanent": True})
+        if base != "/": vr.append({"source": base + "/", "destination": b, "permanent": True})
+    vercel = {"cleanUrls": False, "trailingSlash": True, "redirects": vr,
               "headers": [{"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]}]}
     vercel.update({"buildCommand": "MEDIA_BASE=/assets/media/ python3 build.py", "outputDirectory": "dist", "installCommand": "echo no-install", "framework": None})
     open(os.path.join(OUT, "vercel.json"), "w").write(json.dumps(vercel, indent=1))
