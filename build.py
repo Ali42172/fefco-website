@@ -590,10 +590,15 @@ def seo_files():
     open(os.path.join(OUT, "_redirects"), "w").write("\n".join(lines) + "\n")
     vercel = {"cleanUrls": False, "trailingSlash": True, "redirects": [{"source": a.rstrip("/") or "/", "destination": b, "permanent": True} for a, b in red if "*" not in a],
               "headers": [{"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]}]}
+    vercel.update({"buildCommand": "MEDIA_BASE=/assets/media/ python3 build.py", "outputDirectory": "dist", "installCommand": "echo no-install", "framework": None})
     open(os.path.join(OUT, "vercel.json"), "w").write(json.dumps(vercel, indent=1))
+    open(os.path.join(os.path.dirname(__file__), "vercel.json"), "w").write(json.dumps(vercel, indent=1))
 
 def favicon():
-    from PIL import Image
+    try:
+        from PIL import Image
+    except ImportError:
+        return  # favicon.png is committed in static/assets
     src = os.path.join(OUT, "assets", "fefco-solutions-logo.png")
     im = Image.open(src).convert("RGBA")
     w, h = im.size
