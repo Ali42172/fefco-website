@@ -1,0 +1,9 @@
+# name|source url|start sec|length sec   (Pexels licence: free for commercial use, no attribution required)
+aerial-rooftop|https://www.pexels.com/download/video/9790190/|1|5
+installer|https://www.pexels.com/download/video/8853490/|1|5
+field|https://www.pexels.com/download/video/14067718/|1|5
+check|https://www.pexels.com/download/video/8853531/|1|5
+# FEFCO's own footage (preview only for now)
+fefco-banner|https://fefco.ae/wp-content/uploads/2023/09/bannervideo.mp4|0|5
+fefco-site1|https://fefco.ae/wp-content/uploads/2023/09/20210609_125044.mp4|5|5
+fefco-site2|https://fefco.ae/wp-content/uploads/2023/09/20210527_152338.mp4|5|5

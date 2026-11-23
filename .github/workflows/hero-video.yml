@@ -1,0 +1,44 @@
+name: Build hero video
+on:
+  push:
+    branches: [main]
+    paths: [videos.txt, .github/workflows/hero-video.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: which ffmpeg || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+      - name: Download clips, make previews and the hero montage
+        run: |
+          set -e
+          mkdir -p work static/assets/video video-previews
+          grep -v '^#' videos.txt | grep -v '^$' | while IFS='|' read -r name url start len; do
+            echo "== $name"
+            curl -sfL --retry 3 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36" "$url" -o "work/$name.src" || { echo "download failed: $name"; continue; }
+            ls -la "work/$name.src"
+            ffprobe -v error -show_entries stream=width,height,duration -of csv=p=0 "work/$name.src" || true
+            # 1920x1080, trimmed, no audio, normalised fps
+            ffmpeg -y -v error -ss "$start" -t "$len" -i "work/$name.src" -an -vf "scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,fps=25,format=yuv420p" -c:v libx264 -preset veryfast -crf 20 "work/$name.mp4" || continue
+            ffmpeg -y -v error -i "work/$name.mp4" -vf "fps=1,scale=320:-1,tile=5x1" -frames:v 1 "video-previews/$name.jpg" || true
+          done
+          # montage of the stock clips with 0.8s crossfades
+          clips="aerial-rooftop installer field check"
+          inputs=""; n=0; for c in $clips; do [ -f "work/$c.mp4" ] && { inputs="$inputs -i work/$c.mp4"; n=$((n+1)); }; done
+          if [ "$n" -ge 2 ]; then
+            f=""; prev="0:v"; off=0
+            i=1; while [ $i -lt $n ]; do off=$(python3 -c "print(round($i*5-$i*0.8,2))"); f="$f[$prev][$i:v]xfade=transition=fade:duration=0.8:offset=$off[v$i];"; prev="v$i"; i=$((i+1)); done
+            f="${f%;}"
+            ffmpeg -y -v error $inputs -filter_complex "$f" -map "[$prev]" -an -c:v libx264 -preset slow -crf 27 -pix_fmt yuv420p -movflags +faststart -profile:v high static/assets/video/hero-1080.mp4
+            ffmpeg -y -v error -i static/assets/video/hero-1080.mp4 -vf "scale=1280:720" -an -c:v libx264 -preset slow -crf 29 -pix_fmt yuv420p -movflags +faststart static/assets/video/hero-720.mp4
+            ffmpeg -y -v error -ss 1 -i static/assets/video/hero-1080.mp4 -frames:v 1 -q:v 4 static/assets/video/hero-poster.jpg
+            ls -la static/assets/video
+          fi
+      - name: Commit
+        run: |
+          git config user.name "fefco-bot"; git config user.email "info@fefco.ae"
+          git add static/assets/video video-previews
+          git diff --cached --quiet && echo "nothing new" || (git commit -m "Hero video montage + clip previews" && git pull --rebase && git push)
