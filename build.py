@@ -599,11 +599,11 @@ def seo_files():
         for o in s.get("old", []): red.append((o, "/" + s["slug"] + "/"))
     prod_old = ["solar-energy-storage-systempps-4kwh", "solar-energy-storage-systempps-2kwh", "solar-energy-storage-systemes-1000", "solar-energy-storage-systemes-500", "solar-power-systemcpes-150", "70-kwhair-cooled-distributed", "ggsp-610-650w610-650w", "gg-spi-series-solar-pump-inverter", "25-6v-100ah-lifepo4-battery", "51-2v-314ah-lifepo4-battery", "12-8v-200ah-lifepo4-battery", "12-8v-100ah-lifepo4-battery", "12-8v-300ahlifepo4", "51-2v-628ah-lifepo4-battery", "51-2v-200ah-lifepo4-battery", "6-0-kwh-lifepo4-battery", "12-8v-120ah-lifepo4-battery", "25-6v-200ahlifepo4-battery", "25-6v-200ah-stackablelifepo4", "ggiv-3p-14kw", "ggiv-1p-series", "ggiv-6kw", "24v-5000w-hybrid-lnverter-single-phase", "ggiv-2kw", "dc-solar-cable"]
     for p in prod_old: red.append(("/" + p + "/", "/products/"))
-    red += [("/contact-us/", "/contact/"), ("/portfolio/", "/projects/"), ("/home/", "/"), ("/login/", "https://fefco.ae/"), ("/wp-admin/*", "/"), ("/hello-world/", "/")]
+    red += [("/contact-us/", "/contact/"), ("/portfolio/", "/projects/"), ("/home/", "/"), ("/login/", "https://fefco.ae/"), ("/wp-admin/*", "/"), ("/hello-world/", "/"), ("/wp-content/uploads/*", "/assets/media/:path*")]
     seen = set(); lines = []
     for a, b in red:
         if a in seen: continue
-        seen.add(a); lines.append(f"{a} {b} 301")
+        seen.add(a); lines.append(f"{a} {b.replace(':path*', ':splat')} 301")
         if a.endswith("/") and "*" not in a: lines.append(f"{a.rstrip('/')} {b} 301")
     open(os.path.join(OUT, "_redirects"), "w").write("\n".join(lines) + "\n")
     vr = []
