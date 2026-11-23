@@ -248,7 +248,7 @@ HOME = {
         "kicker": "Solar, water and MEP contractor in Dubai",
         "h1": "Solar power, hot water and maintenance, handled by one team.", "h1_lines": ["Solar power, hot water", "and maintenance,", "handled by one team."],
         "lead": "FEFCO designs, installs and maintains rooftop solar, solar water heaters, battery storage, EV chargers, water systems and plumbing for homes and businesses across the UAE.",
-        "trust": ["DEWA Shams Dubai process handled", "700+ clients served", "24-hour emergency line"],
+        "trust": ["1,500+ projects in the UAE", "DEWA Shams Dubai process handled", "24-hour emergency line"],
         "photo_cap": "Rooftop solar and EV charging for Dubai villas",
         "calc_t": "Estimate your solar savings", "calc_s": "Move the slider to your average monthly DEWA bill.",
         "bill": "Monthly electricity bill", "types": [("villa", "Villa"), ("business", "Business"), ("factory", "Industrial")],
@@ -276,7 +276,7 @@ HOME = {
         "kicker": "مقاول طاقة شمسية ومياه وأعمال كهروميكانيكية في دبي",
         "h1": "الطاقة الشمسية والمياه الساخنة والصيانة، يتولاها فريق واحد.", "h1_lines": ["الطاقة الشمسية والمياه الساخنة", "والصيانة،", "يتولاها فريق واحد."],
         "lead": "تصمم فيفكو وتركّب وتصون أنظمة الطاقة الشمسية على الأسطح وسخانات المياه الشمسية وتخزين الطاقة وشواحن السيارات الكهربائية وأنظمة المياه والسباكة للمنازل والشركات في جميع أنحاء الإمارات.",
-        "trust": ["نتولى إجراءات شمس دبي", "أكثر من 700 عميل", "خط طوارئ على مدار 24 ساعة"],
+        "trust": ["أكثر من 1,500 مشروع منجز", "نتولى إجراءات شمس دبي", "خط طوارئ على مدار 24 ساعة"],
         "photo_cap": "طاقة شمسية وشحن سيارات كهربائية لفلل دبي",
         "calc_t": "احسب توفيرك من الطاقة الشمسية", "calc_s": "حرّك المؤشر إلى متوسط فاتورة ديوا الشهرية.",
         "bill": "فاتورة الكهرباء الشهرية", "types": [("villa", "فيلا"), ("business", "تجاري"), ("factory", "صناعي")],
@@ -384,8 +384,8 @@ def page_home(lang):
     soc_tiles = "".join(f'<a href="{SOCIAL[0][1]}" rel="noopener" target="_blank" aria-label="Instagram"><img src="{img(p)}" alt="" loading="lazy"></a>' for p in ["2024/05/installation2-1.jpeg", "2023/09/solarparking.jpeg", "2023/09/PHOTO-2023-09-16-22-41-51-2.jpg", "2023/09/IMG_20191223_181707-scaled.jpg", "2024/05/repair1.jpeg", "2023/09/solar11-scaled.jpg"])
     soc_links = "".join(f'<a class="soc" href="{s[1]}" rel="noopener" target="_blank">{SOC_ICON[s[2]]}{s[0]}</a>' for s in SOCIAL)
     name = LEADER_NAME[lang] if LEADER_NAME else h["lead_tag"]
-    stats = [("700", "+", "clients across the UAE" if lang=="en" else "عميل في الإمارات"), ("24", "h", "emergency response" if lang=="en" else "استجابة للطوارئ"), ("21", "", "solar, water & MEP services" if lang=="en" else "خدمة طاقة ومياه وكهروميكانيك"), ("7", "", "emirates covered" if lang=="en" else "إمارات نغطيها")]
-    stat_html = "".join(f'<div class="vstat" style="--d:{0.9+i*0.12:.2f}s"><b><span data-count="{n}">{n}</span>{suf}</b><small>{lbl}</small></div>' for i, (n, suf, lbl) in enumerate(stats))
+    stats = [("1500", "+", "projects completed across the UAE" if lang=="en" else "مشروع منجز في الإمارات"), ("700", "+", "clients across the UAE" if lang=="en" else "عميل في الإمارات"), ("24", "h", "emergency response" if lang=="en" else "استجابة للطوارئ"), ("7", "", "emirates covered" if lang=="en" else "إمارات نغطيها")]
+    stat_html = "".join(f'<div class="vstat" style="--d:{0.9+i*0.12:.2f}s"><b><span data-count="{n}">{int(n):,}</span>{suf}</b><small>{lbl}</small></div>' for i, (n, suf, lbl) in enumerate(stats))
     ticker = "".join(f'<span>{E(BY_SLUG[x][lang]["nav"])}</span>' for x in ["solar-panel-installation-dubai", "solar-water-heater-dubai", "solar-water-heater-repair-maintenance-dubai", "ev-charger-installation-dubai", "solar-battery-storage-dubai", "solar-panel-cleaning-maintenance-dubai", "amc-annual-maintenance-contract-dubai", "plumbing-services-dubai", "water-filtration-treatment-dubai", "solar-carport-parking-shades"]) * 2
     h1_lines = h['h1_lines']
     h1_html = "".join(f'<span class="ln" style="--d:{0.15+i*0.14:.2f}s"><span>{E(t)}</span></span>' for i, t in enumerate(h1_lines))
@@ -513,14 +513,14 @@ def page_about(lang):
     if lang == "en":
         story = ("FEFCO Solutions is the trading name of FEFCO Electromechanical Services LLC, a Dubai-based company working in solar energy, water systems and electromechanical services. "
                  "We started with solar water heaters and grew with our customers into rooftop solar PV, battery storage, EV charging, water filtration, GRP tanks, plumbing and full maintenance contracts. "
-                 "Today we serve more than 700 clients, from single villas to factories, hotels and farms, and we are an official dealer of Lamborghini Calorclima water heaters in the UAE and the MENA distributor of the EIRA solar asset-management platform.")
+                 "We have completed more than 1,500 projects across the UAE and today serve more than 700 clients, from single villas to factories, hotels and farms, and we are an official dealer of Lamborghini Calorclima water heaters in the UAE and the MENA distributor of the EIRA solar asset-management platform.")
         vals = [("Do it properly", "Correct sizing, quality equipment and neat installation, even where nobody will see it."), ("Say it clearly", "Written quotes, fixed prices and honest advice, including when not to buy."), ("Stay for the long run", "We maintain what we install and answer the phone years later.")]
         title, desc, h1, lead = "About FEFCO Solutions | Solar, Water & Electromechanical Company in Dubai", "About FEFCO Solutions (FEFCO Electromechanical Services LLC): a Dubai company for solar PV, solar water heaters, water systems, MEP and maintenance across the UAE, with an AI division, FEFCO AI Solutions.", "About FEFCO Solutions", "A Dubai energy, water and electromechanical company built on doing the work properly and staying for the long run."
         ai = f'<p>FEFCO also runs <a href="{AI_SITE}">FEFCO AI Solutions</a>, our AI automation and digital marketing division, which builds AI agents, websites and campaigns for UAE businesses.</p>'
     else:
         story = ("فيفكو سوليوشنز هو الاسم التجاري لشركة فيفكو للخدمات الكهروميكانيكية ذ.م.م، وهي شركة مقرها دبي تعمل في الطاقة الشمسية وأنظمة المياه والخدمات الكهروميكانيكية. "
                  "بدأنا بسخانات المياه الشمسية ونمونا مع عملائنا لنقدم الطاقة الشمسية على الأسطح وتخزين الطاقة وشحن السيارات الكهربائية وفلترة المياه وخزانات الفايبرجلاس والسباكة وعقود الصيانة الشاملة. "
-                 "نخدم اليوم أكثر من 700 عميل، من الفلل إلى المصانع والفنادق والمزارع، ونحن وكيل معتمد لسخانات لامبورغيني كالوركليما في الإمارات وموزع منصة EIRA لإدارة الأصول الشمسية في الشرق الأوسط وشمال أفريقيا.")
+                 "أنجزنا أكثر من 1,500 مشروع في جميع أنحاء الإمارات، ونخدم اليوم أكثر من 700 عميل، من الفلل إلى المصانع والفنادق والمزارع، ونحن وكيل معتمد لسخانات لامبورغيني كالوركليما في الإمارات وموزع منصة EIRA لإدارة الأصول الشمسية في الشرق الأوسط وشمال أفريقيا.")
         vals = [("نعمل بإتقان", "حجم صحيح ومعدات جيدة وتركيب مرتب، حتى حيث لا يراه أحد."), ("نتحدث بوضوح", "عروض مكتوبة وأسعار ثابتة ونصيحة صادقة، حتى عندما لا ننصح بالشراء."), ("نبقى على المدى الطويل", "نصون ما نركّبه ونرد على الهاتف بعد سنوات.")]
         title, desc, h1, lead = "من نحن | فيفكو سوليوشنز للطاقة الشمسية والمياه والأعمال الكهروميكانيكية في دبي", "تعرف على فيفكو سوليوشنز (فيفكو للخدمات الكهروميكانيكية ذ.م.م): شركة في دبي للطاقة الشمسية وسخانات المياه الشمسية وأنظمة المياه والأعمال الكهروميكانيكية والصيانة في الإمارات، ولها قسم للذكاء الاصطناعي.", "من نحن", "شركة طاقة ومياه وأعمال كهروميكانيكية في دبي، قائمة على إتقان العمل والبقاء مع العملاء على المدى الطويل."
         ai = f'<p>كما تدير فيفكو <a href="{AI_SITE}">فيفكو للذكاء الاصطناعي</a>، قسم الأتمتة بالذكاء الاصطناعي والتسويق الرقمي، الذي يبني وكلاء الذكاء الاصطناعي والمواقع والحملات للشركات في الإمارات.</p>'
@@ -581,7 +581,7 @@ def seo_files():
     open(os.path.join(OUT, "robots.txt"), "w").write(robots)
     # llms.txt (answer-engine friendly summary)
     L = ["# FEFCO Solutions", "", "> FEFCO Solutions (legal name FEFCO Electromechanical Services LLC) is a Dubai, UAE company that designs, installs and maintains solar energy, water and electromechanical (MEP) systems for homes, businesses and industry across all seven emirates. Official dealer of Lamborghini Calorclima water heaters in the UAE; authorised MENA distributor of the EIRA solar asset-management platform by Inspire Clean Energy. Its AI division is FEFCO AI Solutions (fefcoaisolutions.com).", "",
-         "## Key facts", f"- Phone / WhatsApp: {COMPANY['phone_main_disp']} (24-hour emergency line); also {COMPANY['phone_2_disp']}", f"- Email: {COMPANY['email']}, {COMPANY['email_solar']}", f"- Office: {COMPANY['address_en']}", "- Areas served: Dubai, Sharjah, Abu Dhabi, Ajman, Ras Al Khaimah, Fujairah, Umm Al Quwain, Al Ain", "- 700+ clients served; free site surveys; handles DEWA Shams Dubai net-metering applications", "- Languages: English, Arabic (website in both)", "- Brands supplied/serviced: " + ", ".join(BRANDS), "- Social: " + ", ".join(s[1] for s in SOCIAL if s[2] != 'wa'), "",
+         "## Key facts", f"- Phone / WhatsApp: {COMPANY['phone_main_disp']} (24-hour emergency line); also {COMPANY['phone_2_disp']}", f"- Email: {COMPANY['email']}, {COMPANY['email_solar']}", f"- Office: {COMPANY['address_en']}", "- Areas served: Dubai, Sharjah, Abu Dhabi, Ajman, Ras Al Khaimah, Fujairah, Umm Al Quwain, Al Ain", "- 1,500+ projects completed across the UAE; 700+ clients served; free site surveys; handles DEWA Shams Dubai net-metering applications", "- Languages: English, Arabic (website in both)", "- Brands supplied/serviced: " + ", ".join(BRANDS), "- Social: " + ", ".join(s[1] for s in SOCIAL if s[2] != 'wa'), "",
          "## Services"]
     for s in SERVICES:
         L.append(f"- [{s['en']['nav']}]({absu('en', s['slug'])}): {s['en']['d']}")

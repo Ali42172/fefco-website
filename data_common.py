@@ -22,6 +22,7 @@ COMPANY = {
     "maps": "https://www.google.com/maps/place/FEFCO+SOLUTIONS/@25.268446,55.3068326,17z",
     "geo": (25.268446, 55.3068326),
     "clients": "700+",
+    "projects": "1500+",
 }
 
 SOCIAL = [
@@ -189,8 +190,8 @@ PROCESS = {
 }
 
 FACTS = {
-    "en": [("700+", "clients served across the UAE"), ("24h", "emergency response line"),
-           ("DEWA", "Shams Dubai rooftop solar process handled for you"), ("7", "emirates served from our Dubai base")],
-    "ar": [("+700", "عميل في جميع أنحاء الإمارات"), ("24 ساعة", "خط استجابة للطوارئ"),
-           ("ديوا", "نتولى إجراءات شمس دبي للطاقة الشمسية على الأسطح"), ("7", "إمارات نخدمها من مقرنا في دبي")],
+    "en": [("1,500+", "projects completed across the UAE"), ("700+", "clients served across the UAE"), ("24h", "emergency response line"),
+           ("DEWA", "Shams Dubai rooftop solar process handled for you")],
+    "ar": [("+1,500", "مشروع منجز في جميع أنحاء الإمارات"), ("+700", "عميل في جميع أنحاء الإمارات"), ("24 ساعة", "خط استجابة للطوارئ"),
+           ("ديوا", "نتولى إجراءات شمس دبي للطاقة الشمسية على الأسطح")],
 }

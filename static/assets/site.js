@@ -93,6 +93,6 @@
   var nums=document.querySelectorAll('[data-count]');
   if(nums.length && !(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){
     nums.forEach(function(el){ var t=+el.dataset.count, s=null, dur=1400; el.textContent='0';
-      setTimeout(function(){ requestAnimationFrame(function step(ts){ if(!s) s=ts; var p=Math.min(1,(ts-s)/dur); el.textContent=Math.round(t*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step); }); }, 900); });
+      setTimeout(function(){ requestAnimationFrame(function step(ts){ if(!s) s=ts; var p=Math.min(1,(ts-s)/dur); el.textContent=Math.round(t*(1-Math.pow(1-p,3))).toLocaleString('en-US'); if(p<1) requestAnimationFrame(step); }); }, 900); });
   }
 })();
